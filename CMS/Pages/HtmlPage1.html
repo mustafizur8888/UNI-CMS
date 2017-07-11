@@ -188,10 +188,15 @@
                     $.each(items, function () {
                         var li = $('<li>' + '</li>');
                         var c;
-                        if (this.List.length > 0) {
-                            c = '<a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">' + this.MenuText + '-eCommerce</span></a>';
+                        if (this.List.length > 0 && this.List[0].List.length>0) {
+                            console.log(this.List);
+                            c = '<a href="#" class="sidebar-nav-submenu"><i class="fa fa-angle-left sidebar-nav-indicator"></i>' + this.MenuText + '</a>';
                             li.append(c);
-                        } else {
+                        } else if (this.List.length > 0 ) {
+                            c = '<a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">' + this.MenuText + '</span></a>';
+                            li.append(c);
+                        }
+                        else {
                             c = '<a href="#" >' + this.MenuText + "</a>";
                             li.append(c);
                         }
