@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
+using DAL;
 
 namespace CMS
 {
@@ -17,17 +18,19 @@ namespace CMS
     }
     public class MenuHandler : IHttpHandler
     {
+        private Db _db= new Db();
 
+        
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
-            Db db = new Db();
+          
             List<SqlParameter> sqlParameters = new List<SqlParameter>
             {
                 new SqlParameter {Value = "1", ParameterName = "@RoleId"}
             };
             var listMenu = new List<Menu>();
-            DataSet ds = db.GetDataSet("RoleWiseMenu", sqlParameters);
+            DataSet ds = _db.GetDataSet("RoleWiseMenu", sqlParameters);
 
             foreach (DataRow row in ds.Tables[0].Rows)
             {
