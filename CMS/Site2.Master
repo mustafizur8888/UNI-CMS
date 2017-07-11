@@ -1,0 +1,113 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site2.master.cs" Inherits="CMS.Site2" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title></title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Brand</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav" id="menu">
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <script src="../js/vendor/jquery.min.js"></script>
+            <script src="../js/vendor/bootstrap.min.js"></script>
+            <script>
+
+                $(document).ready(function () {
+
+                    $.ajax({
+                        url: '../MenuHandler.ashx',
+                        method: 'get',
+                        dataType: 'json',
+                        success: function (data) {
+                            buildMenu($('#menu'), data);
+                            //$('#menu').menu();
+                        }
+                    });
+
+                    function buildMenu(parent, items) {
+
+                        $.each(items, function () {
+
+
+                            var li = $('<li class="dropdown">' + '</li>');
+                            var c;
+                            if (this.List.length > 0) {
+                                c = '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + this.MenuText + '<span class="caret"></span></a>';
+                                li.append(c);
+                            } else {
+                             
+                                c = '<a href="#" >' + this.MenuText + "</a>";
+                                li.append(c);
+                            }
+                            li.appendTo(parent);
+
+                            if (this.List && this.List.length > 0) {
+                                var ul = $('<ul class="dropdown-menu"></ul>');
+                                ul.appendTo(li);
+                                buildMenu(ul, this.List);
+                            }
+                        });
+                    }
+                });
+
+            </script>
+
+
+
+        </div>
+    </form>
+</body>
+</html>
