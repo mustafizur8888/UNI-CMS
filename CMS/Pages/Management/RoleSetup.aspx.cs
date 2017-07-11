@@ -132,6 +132,7 @@ namespace AMAR.Web.Pages.CMS
                     new SqlParameter{Value = id,ParameterName = "@id"},
 
                 };
+                //to reset hidden field value
                 hidRoleID.Value = "";
                 int count = _db.ExecuteNonQuery("sp_RoleManagement", sqlParameters);
                 if (count > 0)
