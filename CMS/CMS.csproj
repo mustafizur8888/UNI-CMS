@@ -89,6 +89,7 @@
     <Content Include="css\themes\night.css" />
     <Content Include="css\themes\spring.css" />
     <Content Include="css\themes\waterlily.css" />
+    <Content Include="DBScript\CMS.sql" />
     <Content Include="Pages\Content\ContentUpload.aspx" />
     <Content Include="Pages\HtmlPage1.html" />
     <Content Include="img\favicon.png" />

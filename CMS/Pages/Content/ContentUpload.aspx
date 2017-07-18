@@ -10,26 +10,25 @@
         <!-- END Clickable Wizard Title -->
 
         <!-- Clickable Wizard Content -->
-        <div id="clickable-wizard" class="form-horizontal form-bordered">
+        <div class="form-horizontal form-bordered">
             <!-- First Step -->
-            <div id="clickable-first" class="step">
-          
+            <div class="step">
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="example-clickable-username">Username</label>
+                    <label class="col-md-4 control-label" for="ddlPortal">Portal</label>
                     <div class="col-md-5">
-                        <input type="text" id="example-clickable-username" name="example-clickable-username" class="form-control" placeholder="Your username..">
+                        <asp:DropDownList runat="server" ID="ddlPortal" class="select-chosen" data-placeholder="Choose a portal" Style="width: 100%;" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="example-clickable-email">Email</label>
+                    <label class="col-md-4 control-label" for="ddlContentCategory">Category</label>
                     <div class="col-md-5">
-                        <input type="text" id="example-clickable-email" name="example-clickable-email" class="form-control" placeholder="test@example.com">
+                        <asp:DropDownList runat="server" ID="ddlContentCategory" class="select-chosen" data-placeholder="Choose a category" Style="width: 100%;" AutoPostBack="True" OnSelectedIndexChanged="ddlContentCategory_OnSelectedIndexChanged" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="example-clickable-password">Password</label>
+                    <label class="col-md-4 control-label" for="ddlContentCategory">Sub-Category</label>
                     <div class="col-md-5">
-                        <input type="password" id="example-clickable-password" name="example-clickable-password" class="form-control" placeholder="Choose a crazy one..">
+                        <asp:DropDownList runat="server" ID="ddlContentSubCategory" class="select-chosen" data-placeholder="Choose a sub-category" Style="width: 100%;" />
                     </div>
                 </div>
                 <div class="form-group">
