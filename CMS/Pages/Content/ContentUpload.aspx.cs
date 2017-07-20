@@ -147,7 +147,7 @@ namespace CMS.Pages.Content
                     },
                     new SqlParameter
                     {
-                        Value = ddlArtist.Items.Count > 0 ? ddlArtist.SelectedValue : null,
+                        Value = ddlArtist.Items.Count > 0 ? ddlArtist.SelectedValue : "",
                         ParameterName = "@ArtistId"
                     },
                     new SqlParameter
@@ -157,12 +157,12 @@ namespace CMS.Pages.Content
                     },
                     new SqlParameter
                     {
-                        Value = ddlAlbum.Items.Count > 0 ? ddlAlbum.SelectedValue : null,
+                        Value = ddlAlbum.Items.Count > 0 ? ddlAlbum.SelectedValue : "",
                         ParameterName = "@AlbumId"
                     },
                     new SqlParameter
                     {
-                        Value = ddlOwner.Items.Count > 0 ? ddlOwner.SelectedValue : null,
+                        Value = ddlOwner.Items.Count > 0 ? ddlOwner.SelectedValue : "",
                         ParameterName = "@OwnerId"
                     },
                     new SqlParameter
@@ -255,10 +255,7 @@ namespace CMS.Pages.Content
             {
                 msg += "Select a sub-category" + "<br>";
             }
-            if (ddlContentSubCategory.Items.Count == 0)
-            {
-                msg += "Select a sub-category" + "<br>";
-            }
+           
             if (String.IsNullOrWhiteSpace(txtTitle.Text))
             {
                 msg += "Titile is empty" + "<br>";

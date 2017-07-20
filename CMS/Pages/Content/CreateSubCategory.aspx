@@ -115,7 +115,7 @@
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <asp:HiddenField runat="server" ID="hiMasterId" Value='<%# Bind("CategoryId") %>' />
-                            <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("Id") %>' />
+                            <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("PortalId") %>' />
                             <div class="btn-group btn-group-sm">
                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm " Text="Edit" ID="btnEdit" OnClick="btnEdit_OnClick" />
                                 <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClick="btnDelete_OnClick" />
