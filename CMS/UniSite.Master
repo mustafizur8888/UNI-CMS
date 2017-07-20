@@ -49,9 +49,12 @@
         @import '<%= ResolveUrl("~/css/themes.css")%>';
     </style>
     <!-- Modernizr (browser feature detection library) -->
-    
-        
+
+
     <script src='<%= ResolveUrl("~/js/vendor/modernizr.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/js/vendor/jquery.min.js") %>'></script>
+
+    <script src='<%= ResolveUrl("~/js/vendor/bootstrap.min.js") %>'></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -155,8 +158,8 @@
                             <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
                                 <div class="sidebar-user-avatar">
                                     <a href="page_ready_user_profile.html">
-                                       
-                                        <img src= '<%= ResolveUrl("~/img/placeholders/avatars/avatar2.jpg") %>' alt="avatar">
+
+                                        <img src='<%= ResolveUrl("~/img/placeholders/avatars/avatar2.jpg") %>' alt="avatar">
                                     </a>
                                 </div>
                                 <div class="sidebar-user-name">John Doe</div>
@@ -255,11 +258,9 @@
                 </div>
             </div>
         </div>
-        
-     
-        <script src= '<%= ResolveUrl("~/js/vendor/jquery.min.js") %>'></script>
 
-        <script src='<%= ResolveUrl("~/js/vendor/bootstrap.min.js") %>'></script>
+
+
         <script>
 
             $(document).ready(function () {
@@ -281,7 +282,7 @@
                         var c;
                         var havSub = false;
                         $.each(items,
-                            function() {
+                            function () {
                                 if (this.List.length > 0) {
                                     havSub = true;
                                 }
@@ -313,9 +314,9 @@
 
 
         </script>
-       
+
         <script src='<%= ResolveUrl("~/js/plugins.js") %>'></script>
-        <script src= '<%= ResolveUrl("~/js/app.js") %>'></script>
+        <script src='<%= ResolveUrl("~/js/app.js") %>'></script>
     </form>
 </body>
 </html>
