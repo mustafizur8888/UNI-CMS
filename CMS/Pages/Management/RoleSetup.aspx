@@ -54,7 +54,7 @@
     </div>
     <br />
     <div class="row">
-        <div class="col-md-8 col-lg-8 col-sm-12 col-lg-offset-1 col-md-offset-1">
+        <div class="col-md-12 col-lg-12 col-sm-12">
             <asp:GridView ID="grdRole" runat="server" CssClass="table table-striped table-hover  table-condensed " AutoGenerateColumns="False" GridLines="None">
                 <Columns>
 

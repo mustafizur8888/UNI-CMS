@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MasterMenu.aspx.cs" EnableEventValidation="false" MasterPageFile="~/UniSite.Master" Inherits="AMAR.Web.Pages.CMS.MasterMenu1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateCategory.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateCategory" %>
+
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -17,9 +18,9 @@
     </div>
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
-            <label for="txtMasterMenu" class="col-lg-2 col-md-2 control-label text-right">Master Menu Name</label>
+            <label for="txtCategory" class="col-lg-2 col-md-2 control-label text-right">Category Name</label>
             <div class="col-lg-4 col-md-6">
-                <asp:TextBox runat="server" CssClass="form-control" ID="txtMasterMenu"></asp:TextBox>
+                <asp:TextBox runat="server" CssClass="form-control" ID="txtCategory"></asp:TextBox>
             </div>
 
         </div>
@@ -27,16 +28,18 @@
     </div>
     <br />
     <div class="row">
-    <div class="form-group col-lg-offset-1 col-md-offset-1">
-        <label for="txtMenuOrder" class="col-lg-2 col-md-2 control-label text-right">Menu Order</label>
-        <div class="col-lg-4 col-md-6">
-            <asp:TextBox runat="server" CssClass="form-control" ID="txtMenuOrder"></asp:TextBox>
+        <div class="form-group col-lg-offset-1 col-md-offset-1">
+            <label for="ddlPortalMenu" class="col-lg-2 col-md-2 control-label text-right">Portal Name</label>
+            <div class="col-lg-4 col-md-6">
+                <%--<asp:TextBox runat="server" CssClass="form-control" ID="TextBox1"></asp:TextBox>--%>
+                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlPortalMenu" AutoPostBack="True" />
+            </div>
+
         </div>
 
     </div>
-
-    </div>
     <br />
+   
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
             <label for="checkIsActive" class="col-lg-2 col-md-2 control-label text-right">Is Active? </label>
@@ -47,10 +50,20 @@
         </div>
 
     </div>
-
-   
-
     <br />
+    <div class="row">
+        <div class="form-group col-lg-offset-1 col-md-offset-1">
+            <label for="checkHasSubMenu" class="col-lg-2 col-md-2 control-label text-right">Has SubMenu? </label>
+            <div class="col-lg-4 col-md-6">
+                <asp:CheckBox runat="server" ID="checkHasSubMenu" AutoPostBack="True"></asp:CheckBox>
+            </div>
+
+        </div>
+
+    </div>
+    <br />
+    
+   
     <div class="row">
         <div class="form-group col-lg-offset-3 col-md-offset-3">
 
@@ -65,12 +78,22 @@
     <br />
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
-            <asp:GridView ID="grdMasterMenu" runat="server" CssClass="table table-striped table-hover  table-condensed " AutoGenerateColumns="False" GridLines="None">
+            <asp:GridView ID="grdMenu" runat="server" CssClass="table table-striped table-hover  table-condensed " AutoGenerateColumns="False" GridLines="None">
                 <Columns>
 
-                    <asp:TemplateField HeaderText="RoleName">
+                    <asp:TemplateField HeaderText="Name">
                         <ItemTemplate>
-                            <asp:Label runat="server" ID="lblMasterMenuName" Text='<%# Bind("Name") %>' />
+                            <asp:Label runat="server" ID="lblCategoryName" Text='<%# Bind("CategoryName") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Is_Active">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblIsActive" Text='<%# Bind("Is_Active") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Has_SubMenu">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblHasSubManu" Text='<%# Bind("Has_SubMenu") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Created_By">
@@ -93,18 +116,10 @@
                             <asp:Label runat="server" ID="lblUpdateDate" Text='<%# Bind("Update_Date") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Is_Active">
-                        <ItemTemplate>
-                            <asp:Label runat="server" ID="lblIsActive" Text='<%# Bind("Is_Active") %>' />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="MenuOrder">
-                        <ItemTemplate>
-                            <asp:Label runat="server" ID="lblMenuOrder" Text='<%# Bind("MenuOrder") %>' />
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                   
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
+                            <asp:HiddenField runat="server" ID="hiMasterId" Value='<%# Bind("PortalId") %>' />
                             <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("Id") %>' />
                             <div class="btn-group btn-group-sm">
                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm " Text="Edit" ID="btnEdit" OnClick="btnEdit_OnClick" />
@@ -116,9 +131,9 @@
                 </Columns>
             </asp:GridView>
         </div>
+        <asp:HiddenField runat="server" ID="hidIdPrimary" />
         <asp:HiddenField runat="server" ID="hidMasterMenuId" />
     </div>
 
 
 </asp:Content>
-

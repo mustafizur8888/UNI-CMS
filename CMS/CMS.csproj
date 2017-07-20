@@ -91,6 +91,11 @@
     <Content Include="css\themes\waterlily.css" />
     <Content Include="DBScript\CMS.sql" />
     <Content Include="Pages\Content\ContentUpload.aspx" />
+    <Content Include="Pages\Content\CreateArtist.aspx" />
+    <Content Include="Pages\Content\CreateCategory.aspx" />
+    <Content Include="Pages\Content\CreateOwner.aspx" />
+    <Content Include="Pages\Content\CreatePortal.aspx" />
+    <Content Include="Pages\Content\CreateSubCategory.aspx" />
     <Content Include="Pages\HtmlPage1.html" />
     <Content Include="img\favicon.png" />
     <Content Include="img\icon114.png" />
@@ -739,6 +744,41 @@
     </Compile>
     <Compile Include="Pages\Content\ContentUpload.aspx.designer.cs">
       <DependentUpon>ContentUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Content\CreateArtist.aspx.cs">
+      <DependentUpon>CreateArtist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Content\CreateArtist.aspx.designer.cs">
+      <DependentUpon>CreateArtist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Content\CreateCategory.aspx.cs">
+      <DependentUpon>CreateCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Content\CreateCategory.aspx.designer.cs">
+      <DependentUpon>CreateCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Content\CreateOwner.aspx.cs">
+      <DependentUpon>CreateOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Content\CreateOwner.aspx.designer.cs">
+      <DependentUpon>CreateOwner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Content\CreatePortal.aspx.cs">
+      <DependentUpon>CreatePortal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Content\CreatePortal.aspx.designer.cs">
+      <DependentUpon>CreatePortal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Content\CreateSubCategory.aspx.cs">
+      <DependentUpon>CreateSubCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Content\CreateSubCategory.aspx.designer.cs">
+      <DependentUpon>CreateSubCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

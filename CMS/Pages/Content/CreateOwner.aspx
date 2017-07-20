@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MasterMenu.aspx.cs" EnableEventValidation="false" MasterPageFile="~/UniSite.Master" Inherits="AMAR.Web.Pages.CMS.MasterMenu1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateOwner.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateOwner" %>
+
+
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -17,26 +19,16 @@
     </div>
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
-            <label for="txtMasterMenu" class="col-lg-2 col-md-2 control-label text-right">Master Menu Name</label>
+            <label for="txtOwnerName" class="col-lg-2 col-md-2 control-label text-right">Owner Name</label>
             <div class="col-lg-4 col-md-6">
-                <asp:TextBox runat="server" CssClass="form-control" ID="txtMasterMenu"></asp:TextBox>
+                <asp:TextBox runat="server" CssClass="form-control" ID="txtOwnerName"></asp:TextBox>
             </div>
 
         </div>
 
     </div>
     <br />
-    <div class="row">
-    <div class="form-group col-lg-offset-1 col-md-offset-1">
-        <label for="txtMenuOrder" class="col-lg-2 col-md-2 control-label text-right">Menu Order</label>
-        <div class="col-lg-4 col-md-6">
-            <asp:TextBox runat="server" CssClass="form-control" ID="txtMenuOrder"></asp:TextBox>
-        </div>
 
-    </div>
-
-    </div>
-    <br />
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
             <label for="checkIsActive" class="col-lg-2 col-md-2 control-label text-right">Is Active? </label>
@@ -65,12 +57,12 @@
     <br />
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
-            <asp:GridView ID="grdMasterMenu" runat="server" CssClass="table table-striped table-hover  table-condensed " AutoGenerateColumns="False" GridLines="None">
+            <asp:GridView ID="grdArtistName" runat="server" CssClass="table table-striped table-hover  table-condensed " AutoGenerateColumns="False" GridLines="None">
                 <Columns>
 
                     <asp:TemplateField HeaderText="RoleName">
                         <ItemTemplate>
-                            <asp:Label runat="server" ID="lblMasterMenuName" Text='<%# Bind("Name") %>' />
+                            <asp:Label runat="server" ID="lblOwnerName" Text='<%# Bind("Name") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Created_By">
@@ -96,13 +88,8 @@
                     <asp:TemplateField HeaderText="Is_Active">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblIsActive" Text='<%# Bind("Is_Active") %>' />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="MenuOrder">
-                        <ItemTemplate>
-                            <asp:Label runat="server" ID="lblMenuOrder" Text='<%# Bind("MenuOrder") %>' />
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                        </ItemTemplate></asp:TemplateField>
+                  
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("Id") %>' />
@@ -116,9 +103,10 @@
                 </Columns>
             </asp:GridView>
         </div>
-        <asp:HiddenField runat="server" ID="hidMasterMenuId" />
+        <asp:HiddenField runat="server" ID="hidPortalId" />
     </div>
 
 
 </asp:Content>
+
 
