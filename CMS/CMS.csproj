@@ -89,6 +89,7 @@
     <Content Include="css\themes\night.css" />
     <Content Include="css\themes\spring.css" />
     <Content Include="css\themes\waterlily.css" />
+    <Content Include="DBScript\CMS-MR.sql" />
     <Content Include="DBScript\CMS.sql" />
     <Content Include="Pages\Content\ContentUpload.aspx" />
     <Content Include="Pages\Content\CreateArtist.aspx" />
@@ -717,6 +718,7 @@
     <Content Include="less\variables.less" />
     <Content Include="MenuHandler.ashx" />
     <Content Include="Site2.Master" />
+    <Content Include="DBScript\CMS2-ifti.bak" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
