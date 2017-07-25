@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CMS.Models;
 using DAL;
 
 namespace AMAR.Web.Pages.CMS
@@ -151,6 +155,9 @@ namespace AMAR.Web.Pages.CMS
                 }
                 // string CreatedBy = String.Empty;
                 string UpdatedBy = CreatedBy;
+                string Password = txtPassword.Text;
+                string encryptedstring = HelperEncription.StringCipher.Encrypt(Password, Password);
+                string decryptedstring = HelperEncription.StringCipher.Decrypt(encryptedstring, Password);
                 DateTime CreateDate = DateTime.Now;
                 bool isActive = checkIsActive.Checked;
                 string type = hidIdPrimary.Value;
@@ -162,10 +169,10 @@ namespace AMAR.Web.Pages.CMS
                 List<SqlParameter> sqlParameters = new List<SqlParameter>
                 {
                     new SqlParameter{Value = type,ParameterName = "@type"},
-                    new SqlParameter{Value = txtUserName.Text,ParameterName = "@UserName"},
-                    new SqlParameter{Value = txtFullName.Text,ParameterName = "@Name"},
+                    new SqlParameter{Value = txtFullName.Text,ParameterName = "@UserName"},
+                    new SqlParameter{Value = txtUserName.Text,ParameterName = "@Name"},
                     new SqlParameter{Value = ddlRole.SelectedValue,ParameterName = "@roleid"},
-                    new SqlParameter{Value = txtPassword.Text,ParameterName = "@Password"},
+                    new SqlParameter{Value = encryptedstring,ParameterName = "@Password"},
                     new SqlParameter{Value = CreatedBy,ParameterName = "@CreatedBy"},
                     new SqlParameter{Value = UpdatedBy,ParameterName = "@Update_By"},
                     new SqlParameter{Value =CreateDate,ParameterName = "@CreateDate"},
@@ -176,6 +183,7 @@ namespace AMAR.Web.Pages.CMS
                     new SqlParameter{Value = txtCompany.Text,ParameterName = "@Company"},
                     new SqlParameter{Value = status,ParameterName = "@IsActive"},
                     new SqlParameter{Value = id,ParameterName = "@id"},
+                    new SqlParameter{Value = txtPassword.Text,ParameterName = "@PasswordRaw"},
 
                 };
                 hidIdPrimary.Value = "";
@@ -217,6 +225,20 @@ namespace AMAR.Web.Pages.CMS
             {
                 msg += "User name is empty" + "<br>";
             }
+            else
+            {
+
+                string query = "Select count(*) from [tbl_User] where [Name]='" + txtUserName.Text + "'";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "User Name already exists" + "<br/>";
+                    }
+                }
+
+            }
             if (string.IsNullOrWhiteSpace(txtFullName.Text))
             {
                 msg += "Full name is empty" + "<br>";
@@ -254,21 +276,8 @@ namespace AMAR.Web.Pages.CMS
                 msg += "Please select role" + "<br>";
             }
             
-
-            //else
-            //{
-
-            //    string query = "Select count(*) from [tbl_MasterMenu] where MenuOrder='" + txtMenuOrder.Text + "'";
-            //    string value = _db.GetSingelValue(query);
-            //    if (!string.IsNullOrEmpty(value))
-            //    {
-            //        if (value != "0")
-            //        {
-            //            msg += "Menu order already exists" + "<br/>";
-            //        }
-            //    }
-
-            //}
+            
+         
 
             if (!string.IsNullOrWhiteSpace(msg))
             {
@@ -304,5 +313,10 @@ namespace AMAR.Web.Pages.CMS
         {
             return new EmailAddressAttribute().IsValid(email);
         }
+
+       
+        
+
+
     }
 }

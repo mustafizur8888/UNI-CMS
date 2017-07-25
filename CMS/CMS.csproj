@@ -91,12 +91,14 @@
     <Content Include="css\themes\waterlily.css" />
     <Content Include="DBScript\CMS-MR.sql" />
     <Content Include="DBScript\CMS.sql" />
+    <Content Include="Pages\Content\Album.aspx" />
     <Content Include="Pages\Content\ContentUpload.aspx" />
     <Content Include="Pages\Content\CreateArtist.aspx" />
     <Content Include="Pages\Content\CreateCategory.aspx" />
     <Content Include="Pages\Content\CreateOwner.aspx" />
     <Content Include="Pages\Content\CreatePortal.aspx" />
     <Content Include="Pages\Content\CreateSubCategory.aspx" />
+    <Content Include="Pages\Content\Genre.aspx" />
     <Content Include="Pages\HtmlPage1.html" />
     <Content Include="img\favicon.png" />
     <Content Include="img\icon114.png" />
@@ -594,6 +596,8 @@
     <Content Include="less\js\less.min.js" />
     <Content Include="packages.config" />
     <Content Include="Pages\Home.aspx" />
+    <Content Include="Pages\Management\CreateUser.aspx" />
+    <Content Include="Pages\Management\Login.aspx" />
     <Content Include="Pages\Management\MasterMenu.aspx" />
     <Content Include="Pages\Management\Menu.aspx" />
     <Content Include="Pages\Management\RoleSetup.aspx" />
@@ -740,6 +744,14 @@
     <Compile Include="MenuHandler.ashx.cs">
       <DependentUpon>MenuHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HelperEncription.cs" />
+    <Compile Include="Pages\Content\Album.aspx.cs">
+      <DependentUpon>Album.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Content\Album.aspx.designer.cs">
+      <DependentUpon>Album.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Content\ContentUpload.aspx.cs">
       <DependentUpon>ContentUpload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -782,12 +794,33 @@
     <Compile Include="Pages\Content\CreateSubCategory.aspx.designer.cs">
       <DependentUpon>CreateSubCategory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Content\Genre.aspx.cs">
+      <DependentUpon>Genre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Content\Genre.aspx.designer.cs">
+      <DependentUpon>Genre.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Management\CreateUser.aspx.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Management\CreateUser.aspx.designer.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Management\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Management\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Management\MasterMenu.aspx.cs">
       <DependentUpon>MasterMenu.aspx</DependentUpon>
@@ -842,7 +875,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="UplodedFile\Album\" />
     <Folder Include="UplodedFile\Content\" />
   </ItemGroup>
   <ItemGroup>

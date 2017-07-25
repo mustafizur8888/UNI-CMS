@@ -43,7 +43,7 @@
         <div class="form-group col-lg-offset-1 col-md-offset-1">
             <label for="txtPassword" class="col-lg-2 col-md-2 control-label text-right">Password</label>
             <div class="col-lg-4 col-md-6">
-                <asp:TextBox runat="server" CssClass="form-control" ID="txtPassword"></asp:TextBox>
+                <asp:TextBox runat="server" CssClass="form-control" TextMode="Password" ID="txtPassword"></asp:TextBox>
             </div>
 
         </div>
@@ -145,7 +145,7 @@
                             <asp:Label runat="server" ID="lblName" Text='<%# Bind("Name") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Password">
+                    <asp:TemplateField HeaderText="Password" Visible="False">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblPassword" Text='<%# Bind("Password") %>' />
                         </ItemTemplate>
