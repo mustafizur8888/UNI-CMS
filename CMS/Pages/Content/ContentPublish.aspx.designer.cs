@@ -7,10 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AMAR.Web.Pages.CMS {
+namespace CMS.Pages.Content {
     
     
-    public partial class Menu {
+    public partial class ContentPublish {
+        
+        /// <summary>
+        /// divSucc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSucc;
+        
+        /// <summary>
+        /// lblSucc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSucc;
         
         /// <summary>
         /// divError control.
@@ -31,103 +49,40 @@ namespace AMAR.Web.Pages.CMS {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// divSucc control.
+        /// ddlPortal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSucc;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPortal;
         
         /// <summary>
-        /// lblSuccess control.
+        /// ddlContentCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSuccess;
+        protected global::System.Web.UI.WebControls.DropDownList ddlContentCategory;
         
         /// <summary>
-        /// txtMenu control.
+        /// ddlContentSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMenu;
+        protected global::System.Web.UI.WebControls.DropDownList ddlContentSubCategory;
         
         /// <summary>
-        /// ddlMasterMenu control.
+        /// ddlFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMasterMenu;
-        
-        /// <summary>
-        /// txtMenuOrder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMenuOrder;
-        
-        /// <summary>
-        /// checkIsActive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox checkIsActive;
-        
-        /// <summary>
-        /// checkHasSubMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox checkHasSubMenu;
-        
-        /// <summary>
-        /// divUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divUrl;
-        
-        /// <summary>
-        /// txtUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUrl;
-        
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
-        
-        /// <summary>
-        /// btnLoad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFilter;
         
         /// <summary>
         /// btnLoad control.
@@ -139,30 +94,39 @@ namespace AMAR.Web.Pages.CMS {
         protected global::System.Web.UI.WebControls.Button btnLoad;
         
         /// <summary>
-        /// grdMenu control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdMenu;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// hidIdPrimary control.
+        /// btnCanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidIdPrimary;
+        protected global::System.Web.UI.WebControls.Button btnCanel;
         
         /// <summary>
-        /// hidMasterMenuId control.
+        /// grdUnpublish control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidMasterMenuId;
+        protected global::System.Web.UI.WebControls.GridView grdUnpublish;
+        
+        /// <summary>
+        /// grdPublish control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdPublish;
     }
 }

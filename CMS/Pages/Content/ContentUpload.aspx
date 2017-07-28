@@ -147,11 +147,7 @@
                             <asp:Label runat="server" ID="lblArtistName" Text='<%# Bind("ArtistName") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Portal Name">
-                        <ItemTemplate>
-                            <asp:Label runat="server" ID="lblPortalName" Text='<%# Bind("PortalName") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                  
                     <asp:TemplateField HeaderText="Owner Name">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblOwnerName" Text='<%# Bind("OwnerName") %>'></asp:Label>
@@ -182,7 +178,7 @@
 
                 </Columns>
             </asp:GridView>
-
+            <asp:HiddenField runat="server" ID="HId"/>
 
 
         </div>
