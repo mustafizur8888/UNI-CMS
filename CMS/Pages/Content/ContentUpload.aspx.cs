@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 using DAL;
 
@@ -11,6 +12,8 @@ namespace CMS.Pages.Content
 {
     public partial class ContentUpload : System.Web.UI.Page
     {
+
+        private static List<HttpPostedFile> Files = new List<HttpPostedFile>();
         private Db _db = new Db();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,10 +21,43 @@ namespace CMS.Pages.Content
             divSucc.Visible = false;
             if (!IsPostBack)
             {
-                Initialization();
+
+                if (Request.Files.Count == 0)
+                {
+                    Initialization();
+
+                }
+                else
+                {
+                    SaveUploadedFile(Request.Files);
+                }
+
+
             }
         }
 
+        private void SaveUploadedFile(HttpFileCollection requestFiles)
+        {
+            HttpPostedFile firstOrDefault = Files.FirstOrDefault(x => x.FileName == requestFiles[0].FileName);
+
+            if (Files.Contains(firstOrDefault))
+            {
+                
+            }
+            else 
+            {
+                for (int i = 0; i < requestFiles.Count; i++)
+                {
+                    Files.Add(requestFiles[i]);
+                }
+            }
+
+        }
+
+        private void II()
+        {
+            
+        }
 
         private void Initialization()
         {
@@ -121,11 +157,11 @@ namespace CMS.Pages.Content
                 {
                     Directory.CreateDirectory(Server.MapPath(uploded));
                 }
-                string uplodExt = new FileInfo(fuUploadFile.FileName).Extension;
-                uploded = "~/UplodedFile/Content/" + ddlPortal.SelectedItem.Text.Trim() + "/" + ddlContentCategory.SelectedItem.Text.Trim() + "/" +
-                          ddlContentSubCategory.SelectedItem.Text.Trim() + "/" + txtTitle.Text.Trim() + "_" +
-                          DateTime.Now.ToString("yyyyMdHHMMSS") + uplodExt;
-                fuUploadFile.SaveAs(Server.MapPath(uploded));
+                //   string uplodExt = new FileInfo(fuUploadFile.FileName).Extension;
+                //   uploded = "~/UplodedFile/Content/" + ddlPortal.SelectedItem.Text.Trim() + "/" + ddlContentCategory.SelectedItem.Text.Trim() + "/" +
+                //  ddlContentSubCategory.SelectedItem.Text.Trim() + "/" + txtTitle.Text.Trim() + "_" +
+                //  DateTime.Now.ToString("yyyyMdHHMMSS") + uplodExt;
+                // fuUploadFile.SaveAs(Server.MapPath(uploded));
 
 
                 List<SqlParameter> sqlParameters = new List<SqlParameter>
@@ -255,7 +291,7 @@ namespace CMS.Pages.Content
             {
                 msg += "Select a sub-category" + "<br>";
             }
-           
+
             if (String.IsNullOrWhiteSpace(txtTitle.Text))
             {
                 msg += "Titile is empty" + "<br>";
@@ -275,12 +311,12 @@ namespace CMS.Pages.Content
                     msg += "Thumbnail extenshion should be jpg,jpeg,png,gif" + "<br>";
                 }
             }
-            if (!fuUploadFile.HasFile)
-            {
+            //if (!fuUploadFile.HasFile)
+            //{
 
-                msg += "No file uploded" + "<br>";
+            //    msg += "No file uploded" + "<br>";
 
-            }
+            //}
             if (string.IsNullOrEmpty(msg)) return result;
             result = false;
             ShowError(msg);

@@ -13,14 +13,13 @@ namespace CMS
     {
         public int Id { get; set; }
         public string MenuText { get; set; }
+        public string Url { get; set; }
         public int? ParentId { get; set; }
         public List<Menu> List { get; set; }
     }
     public class MenuHandler : IHttpHandler
     {
         private Db _db= new Db();
-
-        
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
@@ -37,6 +36,7 @@ namespace CMS
                 Menu menu = new Menu
                 {
                     Id = Convert.ToInt32(row["Id"]),
+                    Url= row["Url"].ToString(),
                     MenuText = row["MenuText"].ToString(),
                     ParentId = row["ParentId"] != DBNull.Value
                         ? Convert.ToInt32(row["ParentId"])
@@ -57,6 +57,7 @@ namespace CMS
                 Id = x.Id,
                 MenuText = x.MenuText,
                 ParentId = x.ParentId,
+                Url = x.Url,
                 List = GetMenuTree(list, x.Id)
             }).ToList();
         }

@@ -66,6 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\Dropzone\basic.css" />
+    <Content Include="css\Dropzone\dropzone.css" />
     <Content Include="css\fonts\fontawesome\fontawesome-webfont.svg" />
     <Content Include="css\fonts\Glyphicons PRO %28License%29.txt" />
     <Content Include="css\fonts\glyphicons.filetypes.pro\glyphicons-filetypes-regular.svg" />
@@ -91,6 +93,8 @@
     <Content Include="css\themes\waterlily.css" />
     <Content Include="DBScript\CMS-MR.sql" />
     <Content Include="DBScript\CMS.sql" />
+    <Content Include="DropZone.html" />
+    <Content Include="js\Dropzone\dropzone.js" />
     <Content Include="Pages\Content\ContentUpload.aspx" />
     <Content Include="Pages\Content\CreateArtist.aspx" />
     <Content Include="Pages\Content\CreateCategory.aspx" />
