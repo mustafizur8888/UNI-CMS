@@ -21,6 +21,7 @@ namespace AMAR.Web.Pages.CMS
             if (!IsPostBack)
             {
                 MasterMenuLoad();
+                ddlMasterMenu_OnSelectedIndexChanged(null,null);
             }
         }
 
@@ -192,6 +193,7 @@ namespace AMAR.Web.Pages.CMS
             List<SqlParameter> sqlParameters = new List<SqlParameter>
             {
                 new SqlParameter{Value = "select",ParameterName = "@type"},
+                new SqlParameter{Value = ddlMasterMenu.SelectedValue,ParameterName = "@MasterMenuId"},
 
             };
             DataSet ds = null;
@@ -268,6 +270,11 @@ namespace AMAR.Web.Pages.CMS
         protected void checkHasSubMenu_OnCheckedChanged(object sender, EventArgs e)
         {
             divUrl.Visible = !checkHasSubMenu.Checked;
+        }
+
+        protected void ddlMasterMenu_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadMenu();
         }
     }
 }

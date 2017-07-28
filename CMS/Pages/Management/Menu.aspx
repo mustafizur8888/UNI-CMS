@@ -32,7 +32,7 @@
             <label for="ddlMasterMenu" class="col-lg-2 col-md-2 control-label text-right">Master Menu Name</label>
             <div class="col-lg-4 col-md-6">
                 <%--<asp:TextBox runat="server" CssClass="form-control" ID="TextBox1"></asp:TextBox>--%>
-                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlMasterMenu" AutoPostBack="True" />
+                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlMasterMenu" AutoPostBack="True" OnSelectedIndexChanged="ddlMasterMenu_OnSelectedIndexChanged" />
             </div>
 
         </div>
