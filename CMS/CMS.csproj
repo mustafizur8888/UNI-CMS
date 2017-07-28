@@ -598,6 +598,8 @@
     <Content Include="less\js\less.min.js" />
     <Content Include="packages.config" />
     <Content Include="Pages\Home.aspx" />
+    <Content Include="Pages\Management\CreateUser.aspx" />
+    <Content Include="Pages\Management\Login.aspx" />
     <Content Include="Pages\Management\MasterMenu.aspx" />
     <Content Include="Pages\Management\Menu.aspx" />
     <Content Include="Pages\Management\RoleSetup.aspx" />
@@ -792,6 +794,20 @@
     </Compile>
     <Compile Include="Pages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Management\CreateUser.aspx.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Management\CreateUser.aspx.designer.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Management\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Management\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Management\MasterMenu.aspx.cs">
       <DependentUpon>MasterMenu.aspx</DependentUpon>
