@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using CMS.Models;
 using DAL;
 
 namespace CMS.Pages.Content
@@ -13,7 +14,7 @@ namespace CMS.Pages.Content
     public partial class ContentUpload : System.Web.UI.Page
     {
 
-        private static List<HttpPostedFile> Files = new List<HttpPostedFile>();
+        //private static List<HttpPostedFile> Files = new List<HttpPostedFile>();
         private Db _db = new Db();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,23 +27,23 @@ namespace CMS.Pages.Content
             }
         }
 
-        private void SaveUploadedFile(HttpFileCollection requestFiles)
-        {
-            HttpPostedFile firstOrDefault = Files.FirstOrDefault(x => x.FileName == requestFiles[0].FileName);
+        //private void SaveUploadedFile(HttpFileCollection requestFiles)
+        //{
+        //    HttpPostedFile firstOrDefault = Files.FirstOrDefault(x => x.FileName == requestFiles[0].FileName);
 
-            if (Files.Contains(firstOrDefault))
-            {
+        //    if (Files.Contains(firstOrDefault))
+        //    {
 
-            }
-            else
-            {
-                for (int i = 0; i < requestFiles.Count; i++)
-                {
-                    Files.Add(requestFiles[i]);
-                }
-            }
+        //    }
+        //    else
+        //    {
+        //        for (int i = 0; i < requestFiles.Count; i++)
+        //        {
+        //            Files.Add(requestFiles[i]);
+        //        }
+        //    }
 
-        }
+        //}
 
 
 
@@ -62,6 +63,7 @@ namespace CMS.Pages.Content
             chkIsOwner.Checked = false;
             ddlContentCategory.Enabled = true;
             ddlContentSubCategory.Enabled = true;
+            HId.Value = string.Empty;
         }
 
         //private void GetPortalList()
@@ -92,12 +94,10 @@ namespace CMS.Pages.Content
             ddlContentSubCategory.DataTextField = "ConSubCatName";
             ddlContentSubCategory.DataBind();
         }
-
         protected void ddlContentCategory_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             GetContentSubCategoryList();
         }
-
         private void GetOwnerList()
         {
             DataSet ds = _db.GetDataSet("SpGetOwnerList");
@@ -132,6 +132,7 @@ namespace CMS.Pages.Content
                 string thumbNailUrl = null;
                 string uploded = null;
                 string previewUrl = null;
+                
                 if (fuThumbnail.HasFile)
                 {
                     thumbNailUrl = "~/UplodedFile/Thumbnail/" + ddlContentCategory.SelectedItem.Text.Trim() + "/" +
@@ -158,7 +159,7 @@ namespace CMS.Pages.Content
                     fuUploadFile.SaveAs(Server.MapPath(uploded));
                 }
 
-                if (fuPreviewImg.HasFile)
+                if (fuPreviewImg.HasFile )
                 {
                     previewUrl = "~/UplodedFile/PreviewImage/" + ddlContentCategory.SelectedItem.Text.Trim() + "/" +
                                        ddlContentSubCategory.SelectedItem.Text.Trim();
@@ -171,7 +172,7 @@ namespace CMS.Pages.Content
                 {
                     new SqlParameter
                     {
-                        Value = 0,
+                        Value = HId.Value,
                         ParameterName = "@Id"
                     },
                     new SqlParameter
@@ -186,7 +187,7 @@ namespace CMS.Pages.Content
                     },
                     new SqlParameter
                     {
-                        Value = ddlArtist.Items.Count > 0 ? ddlArtist.SelectedValue : "",
+                        Value = ddlArtist.Items.Count > 0 ? ddlArtist.SelectedValue : null,
                         ParameterName = "@ArtistId"
                     },
                     new SqlParameter
@@ -196,12 +197,12 @@ namespace CMS.Pages.Content
                     },
                     new SqlParameter
                     {
-                        Value = ddlAlbum.Items.Count > 0 ? ddlAlbum.SelectedValue : "",
+                        Value = ddlAlbum.Items.Count > 0 ? ddlAlbum.SelectedValue : null,
                         ParameterName = "@AlbumId"
                     },
                     new SqlParameter
                     {
-                        Value = ddlOwner.Items.Count > 0 ? ddlOwner.SelectedValue : "",
+                        Value = ddlOwner.Items.Count > 0 ? ddlOwner.SelectedValue : null,
                         ParameterName = "@OwnerId"
                     },
                     new SqlParameter
@@ -216,22 +217,22 @@ namespace CMS.Pages.Content
                     },
                     new SqlParameter
                     {
-                        Value = thumbNailUrl,
+                        Value = string.IsNullOrWhiteSpace(thumbNailUrl)?null: thumbNailUrl,
                         ParameterName = "@ThumbnailUrl"
                     },
                     new SqlParameter
                     {
-                        Value = uploded,
+                        Value = string.IsNullOrWhiteSpace(uploded)?null:uploded,
                         ParameterName = "@FIleUrl"
                     },
                     new SqlParameter
                     {
-                        Value = "",
+                        Value =UserModel.UserId,
                         ParameterName = "@Created_By"
                     },
                     new SqlParameter
                     {
-                        Value = "",
+                        Value =UserModel.UserId,
                         ParameterName = "@Updated_By"
                     }, new SqlParameter
                     {
@@ -244,7 +245,7 @@ namespace CMS.Pages.Content
                         ParameterName = "@Info"
                     },   new SqlParameter
                     {
-                        Value =previewUrl,
+                        Value =string.IsNullOrWhiteSpace(previewUrl)?null : previewUrl,
                         ParameterName = "@PreviewUrl"
                     }
                 };
@@ -291,6 +292,7 @@ namespace CMS.Pages.Content
         {
             bool result = true;
             string msg = string.Empty;
+            bool isEdit = !ddlContentCategory.Enabled;
             //if (ddlPortal.Items.Count == 0)
             //{
             //    msg += "Select a portal" + "<br>";
@@ -316,24 +318,24 @@ namespace CMS.Pages.Content
             {
                 msg += "Info is empty" + "<br>";
             }
-            if (fuThumbnail.HasFile)
+            if (fuThumbnail.HasFile&& !isEdit)
             {
                 if (!ValidThumbNail(new FileInfo(fuThumbnail.FileName).Extension))
                 {
                     msg += "Thumbnail extenshion should be jpg,jpeg,png,gif" + "<br>";
                 }
             }
-            if (!fuUploadFile.HasFile)
+            if (!fuUploadFile.HasFile && !isEdit)
             {
 
                 msg += "No file uploded" + "<br>";
             }
-            if (!fuPreviewImg.HasFile)
+            if (!fuPreviewImg.HasFile && !isEdit)
             {
 
                 msg += "No preview uploded" + "<br>";
             }
-            if (fuPreviewImg.HasFile)
+            if (fuPreviewImg.HasFile && !isEdit)
             {
                 if (!ValidThumbNail(new FileInfo(fuPreviewImg.FileName).Extension))
                 {
@@ -344,11 +346,8 @@ namespace CMS.Pages.Content
             if (string.IsNullOrEmpty(msg)) return result;
             result = false;
             ShowError(msg);
-
-
             return result;
         }
-
         private void ShowError(string msg)
         {
             divError.Visible = true;
@@ -359,14 +358,11 @@ namespace CMS.Pages.Content
             divSucc.Visible = true;
             lblSucc.Text = msg;
         }
-
         private bool ValidThumbNail(string ext)
         {
             var extenstions = new string[] { ".JPG", ".PNG", ".GIF", ".JPEG" };
             return extenstions.Contains(ext.ToUpper());
         }
-
-
         protected void grdDelete_OnClick(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
@@ -397,7 +393,6 @@ namespace CMS.Pages.Content
             string id = ((HiddenField)gvr.FindControl("hidId")).Value;
             DataSet ds = _db.GetDataSet("spGetContent", new List<SqlParameter>{new SqlParameter
                 {Value = id,ParameterName = "@Id"}});
-
             if (ds.Tables[0].Rows.Count > 0)
             {
                 DataRow row = ds.Tables[0].Rows[0];
@@ -411,11 +406,12 @@ namespace CMS.Pages.Content
                 txtDuration.Text = row["Duration"].ToString();
                 txtInfo.Text = row["Info"].ToString();
                 chkIsOwner.Checked = (bool)row["IsOwner"];
-
+                HId.Value = row["Id"].ToString();
             }
-
-
-
+            else
+            {
+                ShowError("Content already published");
+            }
         }
     }
 }

@@ -96,6 +96,7 @@
     <Content Include="DropZone.html" />
     <Content Include="js\Dropzone\dropzone.js" />
     <Content Include="Pages\Content\Album.aspx" />
+    <Content Include="Pages\Content\ContentPublish.aspx" />
     <Content Include="Pages\Content\ContentUpload.aspx" />
     <Content Include="Pages\Content\CreateArtist.aspx" />
     <Content Include="Pages\Content\CreateCategory.aspx" />
@@ -756,6 +757,13 @@
     </Compile>
     <Compile Include="Pages\Content\Album.aspx.designer.cs">
       <DependentUpon>Album.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Content\ContentPublish.aspx.cs">
+      <DependentUpon>ContentPublish.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Content\ContentPublish.aspx.designer.cs">
+      <DependentUpon>ContentPublish.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Content\ContentUpload.aspx.cs">
       <DependentUpon>ContentUpload.aspx</DependentUpon>
