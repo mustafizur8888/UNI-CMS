@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using  System.Data;
+using CMS.Models;
 using DAL;
 
 namespace CMS.Pages.Management
@@ -27,15 +28,13 @@ namespace CMS.Pages.Management
         protected void btnSubmit_OnClick(object sender, EventArgs e)
 
         {
-            string UserName = txtUserName.Value.ToString();
-            string Password = txtPassword.Value.ToString();
+            string UserName = txtUserName.Value;
+            string Password = txtPassword.Value;
 
             List<SqlParameter> sqlParameters = new List<SqlParameter>
             {
                 new SqlParameter{Value = UserName,ParameterName = "@Name"},
                 new SqlParameter{Value = Password,ParameterName = "@password"},
-                
-
             };
            
             DataSet ds = _db.GetDataSet("sp_userLoginAuthentication", sqlParameters);
@@ -44,8 +43,11 @@ namespace CMS.Pages.Management
                 string tt = ds.Tables[0].Rows[0]["Retvalue"].ToString();
                 if (tt == "Exists")
                 {
-                    Session["User"] = UserName;
-                    Response.Redirect("~/Pages/Content/CreateArtist.aspx");
+                    Session["User"] = ds.Tables[0].Rows[0]["UserId"].ToString();
+                    UserModel.UserRole = ds.Tables[0].Rows[0]["roleid"].ToString();
+                    UserModel.UserId = ds.Tables[0].Rows[0]["UserId"].ToString();
+                    UserModel.UserName = ds.Tables[0].Rows[0]["Name"].ToString();
+                    Response.Redirect("~/Pages/Home.aspx");
                 }
                 else
                 {

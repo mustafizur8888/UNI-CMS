@@ -15,7 +15,7 @@ using DAL;
 
 namespace AMAR.Web.Pages.CMS
 {
-    public partial class User : System.Web.UI.Page
+    public partial class User : Page
     {
         private Db _db = new Db();
 

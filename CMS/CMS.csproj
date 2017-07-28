@@ -749,6 +749,7 @@
       <DependentUpon>MenuHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Models\HelperEncription.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Pages\Content\Album.aspx.cs">
       <DependentUpon>Album.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -880,6 +881,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UplodedFile\Content\" />
+    <Folder Include="UplodedFile\PreviewImage\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

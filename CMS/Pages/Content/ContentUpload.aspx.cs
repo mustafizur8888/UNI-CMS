@@ -22,17 +22,7 @@ namespace CMS.Pages.Content
             if (!IsPostBack)
             {
 
-                if (Request.Files.Count == 0)
-                {
-                    Initialization();
-
-                }
-                else
-                {
-                    SaveUploadedFile(Request.Files);
-                }
-
-
+                Initialization();
             }
         }
 
@@ -42,9 +32,9 @@ namespace CMS.Pages.Content
 
             if (Files.Contains(firstOrDefault))
             {
-                
+
             }
-            else 
+            else
             {
                 for (int i = 0; i < requestFiles.Count; i++)
                 {
@@ -54,14 +44,11 @@ namespace CMS.Pages.Content
 
         }
 
-        private void II()
-        {
-            
-        }
+
 
         private void Initialization()
         {
-            GetPortalList();
+            //GetPortalList();
             GetContentCategoryList();
             ddlContentCategory_OnSelectedIndexChanged(null, null);
             GetOwnerList();
@@ -73,18 +60,19 @@ namespace CMS.Pages.Content
             txtInfo.Text = string.Empty;
             txtTitle.Text = string.Empty;
             chkIsOwner.Checked = false;
-
+            ddlContentCategory.Enabled = true;
+            ddlContentSubCategory.Enabled = true;
         }
 
-        private void GetPortalList()
-        {
+        //private void GetPortalList()
+        //{
 
-            DataSet ds = _db.GetDataSet("GetPortalList");
-            ddlPortal.DataSource = ds;
-            ddlPortal.DataValueField = "Id";
-            ddlPortal.DataTextField = "PortalName";
-            ddlPortal.DataBind();
-        }
+        //    DataSet ds = _db.GetDataSet("GetPortalList");
+        //    ddlPortal.DataSource = ds;
+        //    ddlPortal.DataValueField = "Id";
+        //    ddlPortal.DataTextField = "PortalName";
+        //    ddlPortal.DataBind();
+        //}
 
         private void GetContentCategoryList()
         {
@@ -142,27 +130,42 @@ namespace CMS.Pages.Content
             {
 
                 string thumbNailUrl = null;
+                string uploded = null;
+                string previewUrl = null;
                 if (fuThumbnail.HasFile)
                 {
-                    thumbNailUrl = "~/UplodedFile/Thumbnail/" + DateTime.Now.ToString("yyyyMdHHMMSS") + new FileInfo(fuThumbnail.FileName).Extension;
+                    thumbNailUrl = "~/UplodedFile/Thumbnail/" + ddlContentCategory.SelectedItem.Text.Trim() + "/" +
+                                   ddlContentSubCategory.SelectedItem.Text.Trim();
+                    CreateDirectory(thumbNailUrl);
+                    thumbNailUrl = thumbNailUrl + "/" + DateTime.Now.ToString("yyyyMdHHMMSS") + new FileInfo(fuThumbnail.FileName).Extension;
                     fuThumbnail.SaveAs(Server.MapPath(thumbNailUrl));
                 }
                 else
                 {
                     thumbNailUrl = "~/UplodedFile/Thumbnail/" + "avatar2.jpg";
                 }
-                string uploded = "~/UplodedFile/Content/" + ddlPortal.SelectedItem.Text.Trim() + "/" +
-                        ddlContentCategory.SelectedItem.Text.Trim() + "/" + ddlContentSubCategory.SelectedItem.Text.Trim();
-                if (!Directory.Exists(Server.MapPath(uploded)))
-                {
-                    Directory.CreateDirectory(Server.MapPath(uploded));
-                }
-                //   string uplodExt = new FileInfo(fuUploadFile.FileName).Extension;
-                //   uploded = "~/UplodedFile/Content/" + ddlPortal.SelectedItem.Text.Trim() + "/" + ddlContentCategory.SelectedItem.Text.Trim() + "/" +
-                //  ddlContentSubCategory.SelectedItem.Text.Trim() + "/" + txtTitle.Text.Trim() + "_" +
-                //  DateTime.Now.ToString("yyyyMdHHMMSS") + uplodExt;
-                // fuUploadFile.SaveAs(Server.MapPath(uploded));
 
+                if (fuUploadFile.HasFile)
+                {
+                    uploded = "~/UplodedFile/Content/" +
+                                    ddlContentCategory.SelectedItem.Text.Trim() + "/" + ddlContentSubCategory.SelectedItem.Text.Trim();
+
+                    CreateDirectory(uploded);
+                    string uplodExt = new FileInfo(fuUploadFile.FileName).Extension;
+                    uploded = "~/UplodedFile/Content/" + ddlContentCategory.SelectedItem.Text.Trim() + "/" +
+                              ddlContentSubCategory.SelectedItem.Text.Trim() + "/" + txtTitle.Text.Trim() + "_" +
+                              DateTime.Now.ToString("yyyyMdHHMMSS") + uplodExt;
+                    fuUploadFile.SaveAs(Server.MapPath(uploded));
+                }
+
+                if (fuPreviewImg.HasFile)
+                {
+                    previewUrl = "~/UplodedFile/PreviewImage/" + ddlContentCategory.SelectedItem.Text.Trim() + "/" +
+                                       ddlContentSubCategory.SelectedItem.Text.Trim();
+                    CreateDirectory(previewUrl);
+                    previewUrl = previewUrl + "/" + DateTime.Now.ToString("yyyyMdHHMMSS") + new FileInfo(fuPreviewImg.FileName).Extension;
+                    fuPreviewImg.SaveAs(Server.MapPath(previewUrl));
+                }
 
                 List<SqlParameter> sqlParameters = new List<SqlParameter>
                 {
@@ -188,7 +191,7 @@ namespace CMS.Pages.Content
                     },
                     new SqlParameter
                     {
-                        Value = ddlPortal.SelectedValue,
+                        Value = "1",
                         ParameterName = "@Portalid"
                     },
                     new SqlParameter
@@ -239,9 +242,12 @@ namespace CMS.Pages.Content
                     {
                         Value =txtInfo.Text,
                         ParameterName = "@Info"
+                    },   new SqlParameter
+                    {
+                        Value =previewUrl,
+                        ParameterName = "@PreviewUrl"
                     }
                 };
-
                 if (_db.ExecuteNonQuery("SpSavetblUplodedContent", sqlParameters) > 0)
                 {
                     ShowSucc("Saved Succefully");
@@ -253,8 +259,14 @@ namespace CMS.Pages.Content
                 }
 
 
+            }
+        }
 
-
+        private void CreateDirectory(string uploded)
+        {
+            if (!Directory.Exists(Server.MapPath(uploded)))
+            {
+                Directory.CreateDirectory(Server.MapPath(uploded));
             }
         }
 
@@ -279,10 +291,10 @@ namespace CMS.Pages.Content
         {
             bool result = true;
             string msg = string.Empty;
-            if (ddlPortal.Items.Count == 0)
-            {
-                msg += "Select a portal" + "<br>";
-            }
+            //if (ddlPortal.Items.Count == 0)
+            //{
+            //    msg += "Select a portal" + "<br>";
+            //}
             if (ddlContentCategory.Items.Count == 0)
             {
                 msg += "Select a category" + "<br>";
@@ -311,12 +323,24 @@ namespace CMS.Pages.Content
                     msg += "Thumbnail extenshion should be jpg,jpeg,png,gif" + "<br>";
                 }
             }
-            //if (!fuUploadFile.HasFile)
-            //{
+            if (!fuUploadFile.HasFile)
+            {
 
-            //    msg += "No file uploded" + "<br>";
+                msg += "No file uploded" + "<br>";
+            }
+            if (!fuPreviewImg.HasFile)
+            {
 
-            //}
+                msg += "No preview uploded" + "<br>";
+            }
+            if (fuPreviewImg.HasFile)
+            {
+                if (!ValidThumbNail(new FileInfo(fuPreviewImg.FileName).Extension))
+                {
+                    msg += "Preview image extenshion should be jpg,jpeg,png,gif" + "<br>";
+                }
+            }
+
             if (string.IsNullOrEmpty(msg)) return result;
             result = false;
             ShowError(msg);
@@ -364,6 +388,34 @@ namespace CMS.Pages.Content
                 ShowSucc("Failed.Content already published");
 
             }
+        }
+
+        protected void grdEdit_OnClick(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow gvr = (GridViewRow)btn.NamingContainer;
+            string id = ((HiddenField)gvr.FindControl("hidId")).Value;
+            DataSet ds = _db.GetDataSet("spGetContent", new List<SqlParameter>{new SqlParameter
+                {Value = id,ParameterName = "@Id"}});
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                ddlContentCategory.SelectedValue = row["ContentCategoryId"].ToString();
+                ddlContentSubCategory.SelectedValue = string.IsNullOrWhiteSpace(row["ConSubCatId"].ToString()) ? "0" : row["ConSubCatId"].ToString();
+                ddlAlbum.SelectedValue = string.IsNullOrWhiteSpace(row["AlbumId"].ToString()) ? "0" : row["AlbumId"].ToString();
+                ddlArtist.SelectedValue = string.IsNullOrWhiteSpace(row["ArtistId"].ToString()) ? "0" : row["ArtistId"].ToString();
+                ddlContentCategory.Enabled = false;
+                ddlContentSubCategory.Enabled = false;
+                txtTitle.Text = row["Title"].ToString();
+                txtDuration.Text = row["Duration"].ToString();
+                txtInfo.Text = row["Info"].ToString();
+                chkIsOwner.Checked = (bool)row["IsOwner"];
+
+            }
+
+
+
         }
     }
 }
