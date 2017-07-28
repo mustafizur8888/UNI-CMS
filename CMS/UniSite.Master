@@ -47,14 +47,16 @@
         @import '<%= ResolveUrl("~/css/plugins.css")%>';
         @import '<%= ResolveUrl("~/css/main.css")%>';
         @import '<%= ResolveUrl("~/css/themes.css")%>';
+        /*@import '<%= ResolveUrl("~/css/Dropzone/basic.css")%>';
+        @import '<%= ResolveUrl("~/css/Dropzone/dropzone.css")%>';*/
     </style>
     <!-- Modernizr (browser feature detection library) -->
 
 
     <script src='<%= ResolveUrl("~/js/vendor/modernizr.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/js/vendor/jquery.min.js") %>'></script>
-
     <script src='<%= ResolveUrl("~/js/vendor/bootstrap.min.js") %>'></script>
+<%--    <script src='<%= ResolveUrl("~/js/Dropzone/dropzone.js") %>'></script>--%>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -70,7 +72,7 @@
 
 
 
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" >
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -276,7 +278,7 @@
 
 
                 function buildMenu(parent, items) {
-
+                    var baseU = '<%= ResolveUrl("~/") %>';
                     $.each(items, function () {
                         var li = $('<li>' + '</li>');
                         var c;
@@ -289,15 +291,14 @@
                             });
 
                         if (this.List.length > 0 && this.List[0].List.length > 0) {
-                            c = '<a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">' + this.MenuText + '</span></a>';
+                            c = '<a href=' + baseU + this.Url +' class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">' + this.MenuText + '</span></a>';
                             li.append(c);
                         } else if (this.List.length > 0) {
-                            console.log(this.List && havSub);
-                            c = '<a href="#" class="sidebar-nav-submenu"><i class="fa fa-angle-left sidebar-nav-indicator"></i>' + this.MenuText + '</a>';
+                            c = '<a href=' + baseU + this.Url  +' class="sidebar-nav-submenu"><i class="fa fa-angle-left sidebar-nav-indicator"></i>' + this.MenuText + '</a>';
                             li.append(c);
                         }
                         else {
-                            c = '<a href="#" >' + this.MenuText + "</a>";
+                            c = '<a href=' +baseU +  this.Url + '>' + this.MenuText + "</a>";
                             li.append(c);
                         }
                         li.appendTo(parent);

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/Dropzone/basic.css" rel="stylesheet" />
+    <link href="css/Dropzone/dropzone.css" rel="stylesheet" />
+
+    <script src="js/vendor/jquery.min.js"></script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <script src="js/Dropzone/dropzone.js"></script>
+
+</head>
+<body>
+
+<div id="dZUpload" class="dropzone">
+    <div class="dz-default dz-message">
+        Drop image here. 
+    </div>
+</div>
+    
+<script>
+    $(document).ready(function () {
+        Dropzone.autoDiscover = false;
+        //Simple Dropzonejs 
+        $("#dZUpload").dropzone({
+            url: "hn_SimpeFileUploader.ashx",
+            maxFiles: 5,
+            addRemoveLinks: true,
+            success: function (file, response) {
+                var imgName = response;
+                file.previewElement.classList.add("dz-success");
+                console.log("Successfully uploaded :" + imgName);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

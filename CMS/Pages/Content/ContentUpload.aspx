@@ -93,12 +93,25 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4  control-label" for="fuUploadFile">Upload File</label>
-                    <div class="col-md-5">
-                        <asp:FileUpload runat="server" ID="fuUploadFile" AllowMultiple="False" />
+                    <label class="col-md-4  control-label" for="fuThumbnail">Thumbnail</label>
+                    <div class="col-md-5 dropzone" id="dZUpload">
+                        <div class="dz-default dz-message">
+                            Drop image here. 
+                        </div>
+
                     </div>
                 </div>
+
+
+                <%--  <div class="form-group dropzone">
+                    <label class="col-md-4  control-label" for="fuUploadFile">Upload File</label>
+                    <div class="col-md-5 fallback dz-default dz-message">
+                        <asp:FileUpload runat="server" ID="fuUploadFile" AllowMultiple="False" />
+                    </div>
+                </div>--%>
             </div>
+
+
             <!-- END First Step -->
 
             <!-- Form Buttons -->
@@ -123,7 +136,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Category Name">
                         <ItemTemplate>
-                            <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("id") %>'/>
+                            <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("id") %>' />
                             <asp:Label runat="server" ID="lblContentCategoryName" Text='<%# Bind("ContentCategoryName") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -172,5 +185,54 @@
 
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+           Dropzone.autoDiscover = false;
+            //Simple Dropzonejs 
+            $("#dZUpload").dropzone({
+                url: '<%= ResolveUrl("~/Pages/Content/ContentUpload.aspx") %>' + '/SaveUploadedFile',
+                addRemoveLinks: true,
+                clickable: true,
+                maxFilesize: 1,
+                success: function (file, response) {
+                    var imgName = response;
+                    file.previewElement.classList.add("dz-success");
+                   // console.log(this.files);
+                },
+                error: function (file, response) {
+                    console.log(file);
+                    file.previewElement.classList.add("dz-error");
+                    this.files.remove(file);
+                },
+            });
+          });
+
+       <%-- $(document).ready(function () {
+            Dropzone.autoDiscover = false;
+          <%--  var myDropzone = new Dropzone("#dZUpload", {
+                url: '<%= ResolveUrl("~/Pages/Content/ContentUpload.aspx") %>',
+                addRemoveLinks: true,
+                autoProcessQueue: false
+            });--%>
+
+          <%--  var myDropzone = new Dropzone("#dZUpload", {
+                url: '<%= ResolveUrl("~/Pages/Content/ContentUpload.aspx") %>',
+                addRemoveLinks: true,
+                autoProcessQueue: false
+            });
+            myDropzone.init = function () {
+
+            }--%>
+
+           <%-- $('#' +'<%= btnSave.ClientID %>').on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                myDropzone.processQueue();
+
+            });--%>
+       // }); --%>
+
+    </script>
 
 </asp:Content>
