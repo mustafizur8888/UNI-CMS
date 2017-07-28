@@ -38,11 +38,11 @@ namespace DAL
 
         public string GetSingelValue(string commandText, List<SqlParameter> parameters)
         {
-            return GetScallervalue( commandText,  parameters);
+            return GetScallervalue(commandText, parameters);
         }
         public string GetSingelValue(string commandText)
         {
-            return GetScallervalue( commandText, new List<SqlParameter>());
+            return GetScallervalue(commandText, new List<SqlParameter>());
         }
 
 
@@ -50,7 +50,7 @@ namespace DAL
         private string GetScallervalue(string commandText, List<SqlParameter> parameters)
         {
 
-            string result=string.Empty;
+            string result = string.Empty;
             using (SqlConnection connection = new SqlConnection(_con))
             {
                 using (SqlCommand command = new SqlCommand())
@@ -63,7 +63,8 @@ namespace DAL
                     {
                         foreach (SqlParameter sqlParameter in parameters)
                         {
-                            command.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value);
+                            command.Parameters.AddWithValue(sqlParameter.ParameterName,sqlParameter.Value
+                              );
                         }
                         command.CommandType = CommandType.StoredProcedure;
                     }
@@ -90,7 +91,7 @@ namespace DAL
         {
 
             DataSet ds = new DataSet();
-           
+
             using (SqlConnection connection = new SqlConnection(_con))
             {
                 using (SqlCommand command = new SqlCommand())

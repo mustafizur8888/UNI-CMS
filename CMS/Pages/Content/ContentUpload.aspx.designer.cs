@@ -49,15 +49,6 @@ namespace CMS.Pages.Content {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// ddlPortal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPortal;
-        
-        /// <summary>
         /// ddlContentCategory control.
         /// </summary>
         /// <remarks>
@@ -155,6 +146,15 @@ namespace CMS.Pages.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fuUploadFile;
+        
+        /// <summary>
+        /// fuPreviewImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuPreviewImg;
         
         /// <summary>
         /// btnSave control.

@@ -25,12 +25,6 @@
             <!-- First Step -->
             <div class="step">
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="ddlPortal">Portal</label>
-                    <div class="col-md-5">
-                        <asp:DropDownList runat="server" ID="ddlPortal" class="select-chosen" data-placeholder="Choose a portal" Style="width: 100%;" />
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-md-4 control-label" for="ddlContentCategory">Category</label>
                     <div class="col-md-5">
                         <asp:DropDownList runat="server" ID="ddlContentCategory" class="select-chosen" data-placeholder="Choose a category" Style="width: 100%;" AutoPostBack="True" OnSelectedIndexChanged="ddlContentCategory_OnSelectedIndexChanged" />
@@ -93,9 +87,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4  control-label" for="fuThumbnail">Thumbnail</label>
+                    <label class="col-md-4  control-label" for="fuUploadFile">Content</label>
                     <div class="col-md-5">
                         <asp:FileUpload runat="server" ID="fuUploadFile" AllowMultiple="False" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4  control-label" for="fuPreviewImg">Preview Image</label>
+                    <div class="col-md-5">
+                        <asp:FileUpload runat="server" ID="fuPreviewImg" AllowMultiple="False" />
                     </div>
                 </div>
 
@@ -169,9 +169,14 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
-                            <asp:LinkButton runat="server" CssClass="btn btn-danger" ID="grdDelete" OnClick="grdDelete_OnClick">
+                            <div class="btn-group btn-group-xs">
+                                <asp:LinkButton runat="server" CssClass="btn btn-danger btn-xs" ID="grdDelete" OnClick="grdDelete_OnClick">
                                 <i class="fa fa-times"></i>
-                            </asp:LinkButton>
+                                </asp:LinkButton>
+                                <asp:LinkButton runat="server" CssClass="btn btn-default btn-xs" ID="grdEdit" OnClick="grdEdit_OnClick">
+                                <i class="fa fa-pencil"></i>
+                                </asp:LinkButton>
+                            </div>
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -185,7 +190,7 @@
 
     <script>
         $(document).ready(function () {
-           Dropzone.autoDiscover = false;
+            Dropzone.autoDiscover = false;
             //Simple Dropzonejs 
             $("#dZUpload").dropzone({
                 url: '<%= ResolveUrl("~/Pages/Content/ContentUpload.aspx") %>' + '/SaveUploadedFile',
@@ -195,7 +200,7 @@
                 success: function (file, response) {
                     var imgName = response;
                     file.previewElement.classList.add("dz-success");
-                   // console.log(this.files);
+                    // console.log(this.files);
                 },
                 error: function (file, response) {
                     console.log(file);
@@ -203,7 +208,7 @@
                     this.files.remove(file);
                 },
             });
-          });
+        });
 
        <%-- $(document).ready(function () {
             Dropzone.autoDiscover = false;

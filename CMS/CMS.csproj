@@ -873,6 +873,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UplodedFile\Content\" />
+    <Folder Include="UplodedFile\PreviewImage\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
