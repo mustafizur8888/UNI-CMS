@@ -19,7 +19,7 @@
         <div class="form-group col-lg-offset-1 col-md-offset-1">
             <label for="ddlRoleName" class="col-lg-2 col-md-2 control-label text-right">Role Name</label>
             <div class="col-lg-4 col-md-6">
-                <asp:DropDownList runat="server" ID="ddlRoleName" OnSelectedIndexChanged="ddlRoleName_OnSelectedIndexChanged" class="select-chosen" data-placeholder="Choose a Role" Style="width: 100%;"  />
+                <asp:DropDownList runat="server" ID="ddlRoleName"  AutoPostBack="True" OnSelectedIndexChanged="ddlRoleName_OnSelectedIndexChanged" class="select-chosen" data-placeholder="Choose a Role" Style="width: 100%;"  />
             </div>
 
         </div>
@@ -68,6 +68,7 @@
                     <asp:TemplateField HeaderText="SubMenuName">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblCreatedBy" Text='<%# Bind("SubMenuName") %>' />
+                            <asp:HiddenField runat="server" ID="rpId" Value='<%# Bind("RPId") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="SubMenuURL">

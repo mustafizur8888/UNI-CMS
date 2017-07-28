@@ -63,7 +63,7 @@ namespace DAL
                     {
                         foreach (SqlParameter sqlParameter in parameters)
                         {
-                            command.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value);
+                            command.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value ?? DBNull.Value);
                         }
                         command.CommandType = CommandType.StoredProcedure;
                     }
@@ -103,7 +103,7 @@ namespace DAL
                     {
                         foreach (SqlParameter sqlParameter in parameters)
                         {
-                            command.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value);
+                            command.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value ?? DBNull.Value);
                         }
                         command.CommandType = CommandType.StoredProcedure;
                     }
@@ -140,7 +140,7 @@ namespace DAL
                     {
                         foreach (SqlParameter sqlParameter in parameters)
                         {
-                            command.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value);
+                            command.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value ?? DBNull.Value);
                         }
                         command.CommandType = CommandType.StoredProcedure;
                     }

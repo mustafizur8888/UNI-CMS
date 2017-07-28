@@ -603,6 +603,7 @@
     <Content Include="Pages\Management\Login.aspx" />
     <Content Include="Pages\Management\MasterMenu.aspx" />
     <Content Include="Pages\Management\Menu.aspx" />
+    <Content Include="Pages\Management\RolePermission.aspx" />
     <Content Include="Pages\Management\RoleSetup.aspx" />
     <Content Include="Pages\Management\SubMenu.aspx" />
     <Content Include="Pages\Management\User.aspx" />
@@ -831,6 +832,13 @@
     </Compile>
     <Compile Include="Pages\Management\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Management\RolePermission.aspx.cs">
+      <DependentUpon>RolePermission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Management\RolePermission.aspx.designer.cs">
+      <DependentUpon>RolePermission.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Management\RoleSetup.aspx.cs">
       <DependentUpon>RoleSetup.aspx</DependentUpon>

@@ -22,6 +22,7 @@ namespace CMS.Pages.Management
             if (!IsPostBack)
             {
                 LoadRole();
+                ddlRoleName_OnSelectedIndexChanged(null, null);
             }
         }
 
@@ -52,10 +53,10 @@ namespace CMS.Pages.Management
             //throw new NotImplementedException();
         }
 
-        
+
         private void Clear()
         {
-           LoadRole();
+            LoadRole();
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
@@ -64,71 +65,70 @@ namespace CMS.Pages.Management
             {
 
                 bool flag = false;
-
+                string CreatedBy = String.Empty;
                 foreach (GridViewRow row in grdRole.Rows)
                 {
-                    flag = ((CheckBox)row.FindControl("Permission")).Checked;
-                    string menuid = ((Label)row.FindControl("mid")).Text;
-                    string submenuid = ((Label)row.FindControl("sid")).Text;
-                    string roleid = ddlRoleName.SelectedValue.ToString();
+                    try
+                    {
+                        CreatedBy = Session["User"].ToString();
+                    }
+                    catch
+                    {
+                        CreatedBy = String.Empty;
+                    }
 
+                    flag = ((CheckBox)row.FindControl("Permission")).Checked;
+                    string menuid = ((Label)row.FindControl("lblMenuid")).Text;
+                    string submenuid = ((Label)row.FindControl("lblSubmenuid")).Text;
+                    string Rpid = ((HiddenField)row.FindControl("rpId")).Value;
+                    string roleid = ddlRoleName.SelectedValue.ToString();
+                    string UpdatedBy = CreatedBy;
+                    DateTime CreateDate = DateTime.Now;
                     if (flag)
                     {
-
+                        List<SqlParameter> sqlParameterss = new List<SqlParameter>
+                        {
+                            new SqlParameter{Value = 1,ParameterName = "@flag"},
+                            new SqlParameter{Value = menuid,ParameterName = "@menuid"},
+                            new SqlParameter{Value = string.IsNullOrWhiteSpace(submenuid)?null:submenuid,ParameterName = "@submenuid"},
+                            new SqlParameter{Value = roleid,ParameterName = "@roleid"},
+                            new SqlParameter{Value = CreatedBy,ParameterName = "@CreatedBy"},
+                            new SqlParameter{Value = UpdatedBy,ParameterName = "@UpdatedBy"},
+                            new SqlParameter{Value =CreateDate,ParameterName = "@CreateDate"},
+                            new SqlParameter{Value = CreateDate,ParameterName = "@UpdateDate"},
+                            new SqlParameter{Value = Rpid,ParameterName = "@rpid"},
+                        };
+                        int counts = _db.ExecuteNonQuery("sp_ManageRolePermission", sqlParameterss);
+                        if (counts > 0)
+                        {
+                            ShowSuccMsg("Saved Successfully");
+                        }
                     }
                     else
                     {
-                        
+                        List<SqlParameter> sqlParameterss = new List<SqlParameter>
+                        {
+                            new SqlParameter{Value = 0,ParameterName = "@flag"},
+                            new SqlParameter{Value = menuid,ParameterName = "@menuid"},
+                            new SqlParameter{Value = string.IsNullOrWhiteSpace(submenuid)?DBNull.Value:(object)submenuid,ParameterName = "@submenuid"},
+                            new SqlParameter{Value = roleid,ParameterName = "@roleid"},
+                            new SqlParameter{Value = CreatedBy,ParameterName = "@CreatedBy"},
+                            new SqlParameter{Value = UpdatedBy,ParameterName = "@UpdatedBy"},
+                            new SqlParameter{Value =CreateDate,ParameterName = "@CreateDate"},
+                            new SqlParameter{Value = CreateDate,ParameterName = "@UpdateDate"},
+                            new SqlParameter{Value = Rpid,ParameterName = "@rpid"},
+                        };
+                        int counts = _db.ExecuteNonQuery("sp_ManageRolePermission", sqlParameterss);
+                        if (counts > 0)
+                        {
+                            ShowSuccMsg("Updated Successfully");
+                        }
                     }
-
-
                 }
-              
-               
-             
-              
-                List<SqlParameter> sqlParameters = new List<SqlParameter>
-                {
-                    new SqlParameter{Value = type,ParameterName = "@type"},
-                    new SqlParameter{Value = AlbumName,ParameterName = "@AlbumName"},
-                    new SqlParameter{Value = OwnerId,ParameterName = "@OwnerId"},
-                    new SqlParameter{Value = GenreId,ParameterName = "@GenreId"},
-                    new SqlParameter{Value = CreatedBy,ParameterName = "@CreatedBy"},
-                    new SqlParameter{Value = UpdatedBy,ParameterName = "@UpdatedBy"},
-                    new SqlParameter{Value =CreateDate,ParameterName = "@CreateDate"},
-                    new SqlParameter{Value = CreateDate,ParameterName = "@UpdateDate"},
-                    new SqlParameter{Value = isActive,ParameterName = "@isActive"},
-                    new SqlParameter{Value = id,ParameterName = "@id"},
-                    new SqlParameter{Value = AlbumUrl,ParameterName = "@ImgPreviewLink"},
-
-                };
-                int count = _db.ExecuteNonQuery("sp_SetAlbumInfo", sqlParameters);
-                hidIdPrimary.Value = "";
-                hidOwnerIdPrimary.Value = "";
-                hidGenreIdPrimary.Value = "";
-                if (count > 0)
-                {
-                    ShowSuccMsg(type == "update" ? "Updated Successfully" : "Saved Successfully");
-                    Clear();
-                    LoadAlbumInfo();
-
-                }
+                LoadRoleGrid();
             }
         }
 
-        private void LoadAlbumInfo()
-        {
-            List<SqlParameter> sqlParameters = new List<SqlParameter>
-            {
-                new SqlParameter{Value = "select",ParameterName = "@type"},
-
-
-            };
-            DataSet ds = null;
-            ds = _db.GetDataSet("sp_SetAlbumInfo", sqlParameters);
-            grdAlbumInfo.DataSource = ds;
-            grdAlbumInfo.DataBind();
-        }
 
         private void ShowSuccMsg(string msg)
         {
@@ -140,22 +140,6 @@ namespace CMS.Pages.Management
         {
             bool result = true;
             string msg = string.Empty;
-
-            if (string.IsNullOrWhiteSpace(txtAlbumName.Text))
-            {
-                msg += "Album name is empty" + "<br>";
-            }
-
-            if (ddlOwnerName.Items.Count == 0)
-            {
-                msg += "Please select owner name" + "<br>";
-            }
-            if (ddlGenre.Items.Count == 0)
-            {
-                msg += "Please select  genre" + "<br>";
-            }
-
-
 
             if (!string.IsNullOrWhiteSpace(msg))
             {
@@ -174,7 +158,7 @@ namespace CMS.Pages.Management
 
         protected void btnLoad_OnClick(object sender, EventArgs e)
         {
-            LoadAlbumInfo();
+            LoadRoleGrid();
         }
 
         protected void ddlRoleName_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -186,7 +170,7 @@ namespace CMS.Pages.Management
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>
             {
-               
+
                 new SqlParameter{Value = ddlRoleName.SelectedValue,ParameterName = "@RoleId"},
 
             };
