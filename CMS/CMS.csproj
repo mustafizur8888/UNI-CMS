@@ -103,6 +103,7 @@
     <Content Include="Pages\Content\CreateOwner.aspx" />
     <Content Include="Pages\Content\CreatePortal.aspx" />
     <Content Include="Pages\Content\CreateSubCategory.aspx" />
+    <Content Include="Pages\Content\Genre.aspx" />
     <Content Include="Pages\HtmlPage1.html" />
     <Content Include="img\favicon.png" />
     <Content Include="img\icon114.png" />
@@ -806,6 +807,13 @@
     </Compile>
     <Compile Include="Pages\Content\CreateSubCategory.aspx.designer.cs">
       <DependentUpon>CreateSubCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Content\Genre.aspx.cs">
+      <DependentUpon>Genre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Content\Genre.aspx.designer.cs">
+      <DependentUpon>Genre.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
