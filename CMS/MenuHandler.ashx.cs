@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
+using CMS.Models;
 using DAL;
 
 namespace CMS
@@ -19,14 +20,13 @@ namespace CMS
     }
     public class MenuHandler : IHttpHandler
     {
-        private Db _db= new Db();
+        private Db _db = new Db();
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
-          
             List<SqlParameter> sqlParameters = new List<SqlParameter>
             {
-                new SqlParameter {Value = "1", ParameterName = "@RoleId"}
+                new SqlParameter {Value = UserModel.UserRole, ParameterName = "@RoleId"}
             };
             var listMenu = new List<Menu>();
             DataSet ds = _db.GetDataSet("RoleWiseMenu", sqlParameters);
@@ -36,16 +36,16 @@ namespace CMS
                 Menu menu = new Menu
                 {
                     Id = Convert.ToInt32(row["Id"]),
-                    Url= row["Url"].ToString(),
+                    Url = row["Url"].ToString(),
                     MenuText = row["MenuText"].ToString(),
                     ParentId = row["ParentId"] != DBNull.Value
                         ? Convert.ToInt32(row["ParentId"])
-                        : (int?) null
+                        : (int?)null
                 };
 
                 listMenu.Add(menu);
             }
-            
+
             List<Menu> menuTree = GetMenuTree(listMenu, null);
             JavaScriptSerializer js = new JavaScriptSerializer();
             context.Response.Write(js.Serialize(menuTree.OrderBy(x => x.Id).ToList()));

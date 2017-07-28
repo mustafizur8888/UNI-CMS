@@ -748,6 +748,7 @@
       <DependentUpon>MenuHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Models\HelperEncription.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Pages\Content\Album.aspx.cs">
       <DependentUpon>Album.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

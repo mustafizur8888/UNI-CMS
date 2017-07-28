@@ -94,11 +94,8 @@
                 </div>
                 <div class="form-group">
                     <label class="col-md-4  control-label" for="fuThumbnail">Thumbnail</label>
-                    <div class="col-md-5 dropzone" id="dZUpload">
-                        <div class="dz-default dz-message">
-                            Drop image here. 
-                        </div>
-
+                    <div class="col-md-5">
+                        <asp:FileUpload runat="server" ID="fuUploadFile" AllowMultiple="False" />
                     </div>
                 </div>
 
