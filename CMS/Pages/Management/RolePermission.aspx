@@ -78,7 +78,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="hasPermission">
                         <ItemTemplate>
-                            <asp:CheckBox runat="server" CssClass="text-center"  ID="Permission" Checked='<%# bool.Parse(Eval("RoleId").ToString() == "0" ? "false": "true") %>' />
+                            <asp:CheckBox runat="server" CssClass="text-center"  ID="Permission" Checked='<%# bool.Parse(Eval("is_active").ToString() == "False" ? "false": "true") %>' />
                            
                         </ItemTemplate>
                     </asp:TemplateField>
