@@ -44,6 +44,7 @@ namespace CMS.Pages.Management
                 string tt = ds.Tables[0].Rows[0]["Retvalue"].ToString();
                 if (tt == "Exists")
                 {
+                    Session["User"] = UserName;
                     Response.Redirect("~/Pages/Content/CreateArtist.aspx");
                 }
                 else
