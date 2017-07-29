@@ -47,7 +47,9 @@ namespace CMS
             }
 
             List<Menu> menuTree = GetMenuTree(listMenu, null);
+            UserModel.Menus = menuTree;
             JavaScriptSerializer js = new JavaScriptSerializer();
+
             context.Response.Write(js.Serialize(menuTree.OrderBy(x => x.Id).ToList()));
         }
         public List<Menu> GetMenuTree(List<Menu> list, int? parent)

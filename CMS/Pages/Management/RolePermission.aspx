@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RolePermission.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Management.RolePermission" %>
+﻿<%@ Page Title="CMS:Role Permission" Language="C#" AutoEventWireup="true" CodeBehind="RolePermission.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Management.RolePermission" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="row">
@@ -44,7 +44,11 @@
         <div class="col-md-12 col-lg-12 col-sm-12">
             <asp:GridView ID="grdRole" runat="server" CssClass="table table-striped table-hover  table-condensed " AutoGenerateColumns="False" GridLines="None">
                 <Columns>
-
+                    <asp:TemplateField HeaderText="MasterMenuName">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblMasterMenuName" Text='<%# Bind("MasterMenuName") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="SubMenuName">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblAlbumName" Text='<%# Bind("MenuName") %>' />

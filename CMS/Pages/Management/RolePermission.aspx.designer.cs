@@ -67,7 +67,7 @@ namespace CMS.Pages.Management {
         protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// btnLoad control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
