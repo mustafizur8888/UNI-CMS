@@ -34,7 +34,7 @@ namespace CMS
                 }
                 if (!hasAccess)
                 {
-                    Response.Redirect("Pages/Home.aspx");
+                    Response.Redirect("~/Pages/Home.aspx");
                 }
                 //var any = UserModel.Menus.Any(x => x.Url.Contains(SOURCE_URL.Substring(1,SOURCE_URL.Length-1)));
             }

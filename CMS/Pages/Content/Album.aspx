@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Album.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.Album" %>
+﻿<%@ Page Title="CMS:Album" Language="C#" AutoEventWireup="true" CodeBehind="Album.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.Album" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -127,7 +127,7 @@
                   
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
-                            <asp:HiddenField runat="server" ID="hiMasterId" Value='<%# Bind("Id") %>' />
+                            <asp:HiddenField runat="server" ID="hiMasterId" Value='<%# Bind("AlbumId") %>' />
                             <asp:HiddenField runat="server" ID="hidOwnerId" Value='<%# Bind("OwnerId") %>' />
                             <asp:HiddenField runat="server" ID="hidGenreId" Value='<%# Bind("GenreId") %>' />
                             <div class="btn-group btn-group-sm">

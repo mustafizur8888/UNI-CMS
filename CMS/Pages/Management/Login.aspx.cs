@@ -43,7 +43,7 @@ namespace CMS.Pages.Management
                 string tt = ds.Tables[0].Rows[0]["Retvalue"].ToString();
                 if (tt == "Exists")
                 {
-                    Session["User"] = ds.Tables[0].Rows[0]["UserId"].ToString();
+                    Session["User"] = ds.Tables[0].Rows[0]["Name"].ToString();
                     UserModel.UserRole = ds.Tables[0].Rows[0]["roleid"].ToString();
                     UserModel.UserId = ds.Tables[0].Rows[0]["UserId"].ToString();
                     UserModel.UserName = ds.Tables[0].Rows[0]["Name"].ToString();

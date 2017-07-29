@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateCategory.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateCategory" %>
+﻿<%@ Page Title="CMS: Category" Language="C#" AutoEventWireup="true" CodeBehind="CreateCategory.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateCategory" %>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">

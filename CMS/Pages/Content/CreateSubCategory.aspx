@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateSubCategory.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateSubCategory" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateSubCategory.aspx.cs" Title="CMS: Sub-Category" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateSubCategory" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -32,7 +32,7 @@
             <div class="col-lg-4 col-md-6">
                 <%--<asp:TextBox runat="server" CssClass="form-control" ID="TextBox1"></asp:TextBox>--%>
                 <%--<asp:DropDownList runat="server" CssClass="form-control" ID="ddlPortalMenu" AutoPostBack="True"  OnSelectedIndexChanged="ddlMasterMenu_OnSelectedIndexChanged" />--%>
-                <asp:DropDownList runat="server" ID="ddlPortalMenu" class="select-chosen" data-placeholder="Choose a owner" Style="width: 100%;" OnSelectedIndexChanged="ddlMasterMenu_OnSelectedIndexChanged" />
+                <asp:DropDownList runat="server" ID="ddlPortalMenu" class="select-chosen" data-placeholder="Choose a owner" Style="width: 100%;" AutoPostBack="True" OnSelectedIndexChanged="ddlMasterMenu_OnSelectedIndexChanged" />
             </div>
 
         </div>

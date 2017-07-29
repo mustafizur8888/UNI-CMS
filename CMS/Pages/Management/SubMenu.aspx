@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="SubMenu.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="AMAR.Web.Pages.CMS.SubMenu" %>
+﻿<%@ Page Title="CMS: Sub Menu" Language="C#" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="SubMenu.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="AMAR.Web.Pages.CMS.SubMenu" %>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">

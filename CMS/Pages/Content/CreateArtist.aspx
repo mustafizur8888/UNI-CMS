@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateArtist.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateArtist" %>
+﻿<%@ Page Title="CMS: Artist" Language="C#" AutoEventWireup="true" CodeBehind="CreateArtist.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateArtist" %>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">

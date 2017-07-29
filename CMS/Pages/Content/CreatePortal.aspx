@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreatePortal.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreatePortal" %>
+﻿<%@ Page Title="CMS: Portal" Language="C#" AutoEventWireup="true" CodeBehind="CreatePortal.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreatePortal" %>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">

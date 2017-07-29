@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Genre.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.Genre" %>
+﻿<%@ Page Language="C#" Title="CMS: " AutoEventWireup="true" CodeBehind="Genre.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.Genre" %>
 
 
 

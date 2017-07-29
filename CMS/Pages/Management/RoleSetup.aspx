@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  EnableEventValidation="false" CodeBehind="RoleSetup.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="AMAR.Web.Pages.CMS.MasterMenu" %>
+﻿<%@ Page Title="CMS : Role Setup" Language="C#" AutoEventWireup="true"  EnableEventValidation="false" CodeBehind="RoleSetup.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="AMAR.Web.Pages.CMS.MasterMenu" %>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">

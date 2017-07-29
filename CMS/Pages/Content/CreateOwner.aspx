@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateOwner.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateOwner" %>
+﻿<%@ Page Title="CMS : Owner" Language="C#" AutoEventWireup="true" CodeBehind="CreateOwner.aspx.cs" MasterPageFile="~/UniSite.Master" Inherits="CMS.Pages.Content.CreateOwner" %>
 
 
 

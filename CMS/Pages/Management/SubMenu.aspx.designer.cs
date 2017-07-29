@@ -112,7 +112,7 @@ namespace AMAR.Web.Pages.CMS {
         protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// btnLoad control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
