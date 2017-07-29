@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UniSite.Master" AutoEventWireup="true" CodeBehind="ContentPublish.aspx.cs" Inherits="CMS.Pages.Content.ContentPublish" %>
+﻿<%@ Page Title="CMS:Content Publish" Language="C#" MasterPageFile="~/UniSite.Master" AutoEventWireup="true" CodeBehind="ContentPublish.aspx.cs" Inherits="CMS.Pages.Content.ContentPublish" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="content-header">
@@ -61,7 +61,7 @@
             <div class="form-group form-actions">
                 <div class="col-md-8 col-md-offset-4">
                     <asp:Button runat="server" CssClass="btn btn-sm btn-warning" ID="btnLoad" Text="Load ALL" OnClick="btnLoad_OnClick" />
-                    <asp:Button runat="server" CssClass="btn btn-sm btn-warning" ID="btnSave" Text="Load ALL" OnClick="btnSave_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-sm btn-warning" ID="btnSave" Text="Save" OnClick="btnSave_OnClick" />
                     <asp:Button runat="server" CssClass="btn btn-sm btn-warning" ID="btnCanel" Text="Cancel" OnClick="btnCanel_OnClick" />
                 </div>
             </div>

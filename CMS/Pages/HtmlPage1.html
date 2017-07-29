@@ -12,210 +12,39 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- Icons -->
-    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="../img/favicon.png">
-    <link rel="apple-touch-icon" href="../img/icon57.png" sizes="57x57">
-    <link rel="apple-touch-icon" href="../img/icon72.png" sizes="72x72">
-    <link rel="apple-touch-icon" href="../img/icon76.png" sizes="76x76">
-    <link rel="apple-touch-icon" href="../img/icon114.png" sizes="114x114">
-    <link rel="apple-touch-icon" href="../img/icon120.png" sizes="120x120">
-    <link rel="apple-touch-icon" href="../img/icon144.png" sizes="144x144">
-    <link rel="apple-touch-icon" href="../img/icon152.png" sizes="152x152">
-    <link rel="apple-touch-icon" href="../img/icon180.png" sizes="180x180">
 
-
-
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/plugins.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/themes.css">
-    <!-- Modernizr (browser feature detection library) -->
-    <!--<script src="../js/vendor/modernizr.min.js"></script>-->
+    <script src="../js/vendor/jquery.min.js"></script>
 
 </head>
 <body>
-    <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
-    <!--<script src="../js/vendor/jquery.min.js"></script>-->
+    <script>
+        $(document).ready(function () {
+            var myDate = new Date();
+            var randm = myDate.toISOString().substring(0, 4) + myDate.getHours() + '' + myDate.getMinutes() + '' + myDate.getSeconds() + '' + myDate.getMilliseconds();
+            console.log(randm);
+            console.log(myDate.toISOString().substring(0, 10) + ' ' + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds());
+            //yyyy - MM - dd HH: MM: SS
+            // alert(r);
+            //window.location = "http://www.tutorialspoint.com";
+            if (getUrlVars()["Aaa"]) {
+                // alert('Found');
+            } else {
+                window.location = "http://www.tutorialspoint.com";
+            }
 
+        });
 
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
 
-
-    <form id="form1" runat="server">
-
-        <div id="page-wrapper">
-
-
-            <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
-
-                <div id="sidebar">
-                    <!-- Wrapper for scrolling functionality -->
-                    <div id="sidebar-scroll">
-                        <!-- Sidebar Content -->
-                        <div class="sidebar-content">
-                            <!-- Brand -->
-                            <a href="index.html" class="sidebar-brand">
-                                <i class="gi gi-flash"></i><span class="sidebar-nav-mini-hide"><strong>Pro</strong>UI</span>
-                            </a>
-                            <!-- END Brand -->
-                            <!-- User Info -->
-                            <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
-                                <div class="sidebar-user-avatar">
-                                    <a href="page_ready_user_profile.html">
-                                        <img src="../img/placeholders/avatars/avatar2.jpg" alt="avatar">
-                                    </a>
-                                </div>
-                                <div class="sidebar-user-name">John Doe</div>
-                                <div class="sidebar-user-links">
-                                    <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
-                                    <a href="login.html" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
-                                </div>
-                            </div>
-                            <!-- END User Info -->
-
-                            <ul class="sidebar-nav" id="menu">
-
-                                <li>
-                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">eCommerce</span></a>
-                                    <ul>
-                                        <li>
-                                            <a href="page_ecom_dashboard.html">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ecom_orders.html">Orders</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ecom_order_view.html">Order View</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ecom_products.html">Products</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ecom_product_edit.html">Product Edit</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ecom_customer_view.html">Customer View</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <!-- END Sidebar Navigation -->
-                            <!-- END Sidebar Notifications -->
-                        </div>
-                        <!-- END Sidebar Content -->
-                    </div>
-                    <!-- END Wrapper for scrolling functionality -->
-                </div>
-                <!-- END Main Sidebar -->
-                <!-- Main Container -->
-                <div id="main-container">
-
-                    <header class="navbar navbar-default">
-                        <!-- Left Header Navigation -->
-                        <ul class="nav navbar-nav-custom">
-                            <!-- Main Sidebar Toggle Button -->
-                            <li>
-                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');this.blur();">
-                                    <i class="fa fa-bars fa-fw"></i>
-                                </a>
-                            </li>
-
-                        </ul>
-                        <!-- END Left Header Navigation -->
-
-
-                    </header>
-                    <!-- END Header -->
-                    <!-- Page content -->
-                    <div id="page-content">
-
-
-
-                    </div>
-                    <!-- END Page Content -->
-                    <!-- Footer -->
-                    <footer class="clearfix">
-                        <div class="pull-right">
-                            Developed by <a href="http://unifonbd.com/" target="_blank">UniFon IT</a>
-                        </div>
-                        <div class="pull-left">
-                            <span id="year-copy"></span>&copy; <a href="http://unifonbd.com/" target="_blank">CMS</a>
-                        </div>
-                    </footer>
-                    <!-- END Footer -->
-                </div>
-                <!-- END Main Container -->
-            </div>
-            <!-- END Page Container -->
-        </div>
-        <!-- END Page Wrapper -->
-        <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
-        <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
-
-        <!-- User Settings, modal which opens from Settings link (found in top right user menu) and the Cog link (found in sidebar user info) -->
-        <div id="modal-user-settings" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header text-center">
-                        <h2 class="modal-title"><i class="fa fa-pencil"></i>Settings</h2>
-                    </div>
-                    <!-- END Modal Header -->
-
-                </div>
-            </div>
-        </div>
-        <script src="../js/vendor/jquery.min.js"></script>
-        
-        <script src="../js/vendor/bootstrap.min.js"></script>
-        <script>
-            
-            $(document).ready(function () {
-               
-                $.ajax({
-                    url: '../MenuHandler.ashx',
-                    method: 'get',
-                    dataType: 'json',
-                    success: function (data) {
-                        buildMenu($('#menu'), data);
-                    }, async: false
-                });
-
-
-                var str = '';
-                function buildMenu(parent, items) {
-                    
-                    $.each(items, function () {
-                        var li = $('<li>' + '</li>');
-                        var c;
-                        if (this.List.length > 0 && this.List[0].List.length>0) {
-                            console.log(this.List);
-                            c = '<a href="#" class="sidebar-nav-submenu"><i class="fa fa-angle-left sidebar-nav-indicator"></i>' + this.MenuText + '</a>';
-                            li.append(c);
-                        } else if (this.List.length > 0 ) {
-                            c = '<a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">' + this.MenuText + '</span></a>';
-                            li.append(c);
-                        }
-                        else {
-                            c = '<a href="#" >' + this.MenuText + "</a>";
-                            li.append(c);
-                        }
-                        li.appendTo(parent);
-
-                        if (this.List && this.List.length > 0) {
-                            var ul = $('<ul></ul>');
-                            ul.appendTo(li);
-                            buildMenu(ul, this.List);
-                        }
-                    });
-                }
-               
-            });
-           
-
-        </script>
-        <script src="../js/plugins.js"></script>
-        <script src="../js/app.js"></script>
-    </form>
+    </script>
 </body>
 </html>

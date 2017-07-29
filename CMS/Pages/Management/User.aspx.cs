@@ -125,7 +125,7 @@ namespace AMAR.Web.Pages.CMS
             txtDesignation.Text = String.Empty;
             txtEmail.Text = String.Empty;
             txtPhoneNumber.Text = String.Empty;
-            txtPassword.Text=String.Empty;
+            txtPassword.Text = String.Empty;
             checkIsActive.Checked = false;
             hidIdPrimary.Value = "";
             btnSave.Text = "Save";
@@ -169,8 +169,8 @@ namespace AMAR.Web.Pages.CMS
                 List<SqlParameter> sqlParameters = new List<SqlParameter>
                 {
                     new SqlParameter{Value = type,ParameterName = "@type"},
-                    new SqlParameter{Value = txtFullName.Text,ParameterName = "@UserName"},
-                    new SqlParameter{Value = txtUserName.Text,ParameterName = "@Name"},
+                    new SqlParameter{Value = txtUserName.Text,ParameterName = "@UserName"},
+                    new SqlParameter{Value = txtFullName.Text,ParameterName = "@Name"},
                     new SqlParameter{Value = ddlRole.SelectedValue,ParameterName = "@roleid"},
                     new SqlParameter{Value = encryptedstring,ParameterName = "@Password"},
                     new SqlParameter{Value = CreatedBy,ParameterName = "@CreatedBy"},
@@ -275,9 +275,9 @@ namespace AMAR.Web.Pages.CMS
             {
                 msg += "Please select role" + "<br>";
             }
-            
-            
-         
+
+
+
 
             if (!string.IsNullOrWhiteSpace(msg))
             {
@@ -301,21 +301,21 @@ namespace AMAR.Web.Pages.CMS
 
 
 
-      
 
-       
+
+
 
         protected void ddlRole_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-           //
+            //
         }
         public static bool IsEmail(string email)
         {
             return new EmailAddressAttribute().IsValid(email);
         }
 
-       
-        
+
+
 
 
     }

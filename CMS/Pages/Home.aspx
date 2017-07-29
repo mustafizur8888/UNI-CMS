@@ -5,7 +5,7 @@
     <!-- Dashboard 2 Header -->
     <div class="content-header">
         <div class="header-section">
-            <h1>aaaa</h1>
+            <h1>Home Page</h1>
         </div>
     </div>
     <!-- END Dashboard 2 Header -->

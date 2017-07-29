@@ -21,10 +21,10 @@ namespace CMS
             }
             string SOURCE_URL = System.Web.HttpContext.Current.Request.Url.AbsolutePath;
             bool hasAccess = false;
-            if (UserModel.Menus!=null)
+            if (UserModel.Menus != null)
             {
                 //bool test = false;
-                foreach (var VARIABLE in UserModel.Menus.SelectMany(x=>x.List))
+                foreach (var VARIABLE in UserModel.Menus.SelectMany(x => x.List))
                 {
                     hasAccess = VARIABLE.Url.Contains(SOURCE_URL.Substring(1, SOURCE_URL.Length - 1));
                     if (hasAccess == true)
@@ -38,9 +38,10 @@ namespace CMS
                 }
                 //var any = UserModel.Menus.Any(x => x.Url.Contains(SOURCE_URL.Substring(1,SOURCE_URL.Length-1)));
             }
-          
-           
-            
+            lblUserName.Text = UserModel.UserName;
+
+
+
         }
 
     }

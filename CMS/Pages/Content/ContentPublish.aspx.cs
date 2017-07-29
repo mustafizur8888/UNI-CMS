@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CMS.Models;
 using DAL;
 
 namespace CMS.Pages.Content
@@ -65,10 +66,10 @@ namespace CMS.Pages.Content
                     Value = true,
                     ParameterName = "@Filter"
                 }});
-                grdPublish.DataSource = ds;
+                grdUnpublish.DataSource = ds;
                 grdUnpublish.DataBind();
-                grdUnpublish.Visible = false;
-                grdPublish.Visible = true;
+                grdUnpublish.Visible = true;
+                grdPublish.Visible = false;
             }
             else
             {
@@ -77,10 +78,10 @@ namespace CMS.Pages.Content
                     Value = false,
                     ParameterName = "@Filter"
                 }});
-                grdUnpublish.Visible = true;
-                grdPublish.Visible = false;
-                grdUnpublish.DataSource = ds;
-                grdUnpublish.DataBind();
+                grdUnpublish.Visible = false;
+                grdPublish.Visible = true;
+                grdPublish.DataSource = ds;
+                grdPublish.DataBind();
             }
 
         }
@@ -94,13 +95,91 @@ namespace CMS.Pages.Content
 
         }
 
+        private bool Save(string id, bool check, string flag)
+        {
+            List<SqlParameter> list = new List<SqlParameter>
+            {
+                new SqlParameter
+                {
+                    Value = flag,
+                    ParameterName = "@Flag",
+                },
+                new SqlParameter
+                {
+                    Value = id,
+                    ParameterName = "@Id"
+                },
+                new SqlParameter
+                {
+                    Value = check,
+                    ParameterName = "@Check"
+                },
+                new SqlParameter
+                {
+                    Value = UserModel.UserId,
+                    ParameterName = "@UserId"
+                }
 
+            };
+            int r = _db.ExecuteNonQuery("SPContentPublishUnPublish", list);
+            return r > 0;
+        }
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            if (ddlPortal.Items.Count > 0)
+            if (Validation())
             {
-
+                if (ddlFilter.SelectedValue == "P")
+                {
+                    foreach (GridViewRow row in grdUnpublish.Rows)
+                    {
+                        var check = ((CheckBox)row.FindControl("checkP")).Checked;
+                        string id = ((HiddenField)row.FindControl("hidId")).Value;
+                        Save(id, check, "Publsih");
+                    }
+                }
+                else
+                {
+                    foreach (GridViewRow row in grdPublish.Rows)
+                    {
+                        var check = ((CheckBox)row.FindControl("checkP")).Checked;
+                        string id = ((HiddenField)row.FindControl("hidId")).Value;
+                        Save(id, check, "UNPublsih");
+                    }
+                }
+                ShowGrd();
             }
+        }
+
+        private bool Validation()
+        {
+
+            bool flag = true;
+            string msg = String.Empty;
+            if (ddlPortal.Items.Count == 0)
+            {
+                msg += "Select a Portal" + "<br>";
+            }
+
+            if (!string.IsNullOrWhiteSpace(msg))
+            {
+                flag = false;
+                ShowError(msg);
+            }
+
+            return flag;
+
+
+        }
+
+        private void ShowError(string msg)
+        {
+            divError.Visible = true;
+            lblError.Text = msg;
+        }
+        private void ShowSucc(string msg)
+        {
+            divSucc.Visible = true;
+            lblSucc.Text = msg;
         }
     }
 }
