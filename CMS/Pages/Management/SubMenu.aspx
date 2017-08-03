@@ -29,7 +29,7 @@
     <br />
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
-            <label for="ddlMasterMenu" class="col-lg-2 col-md-2 control-label text-right">Master Menu Name</label>
+            <label for="ddlMasterMenu" class="col-lg-2 col-md-2 control-label text-right">Select Master Menu</label>
             <div class="col-lg-4 col-md-6">
                 <%--<asp:TextBox runat="server" CssClass="form-control" ID="TextBox1"></asp:TextBox>--%>
                 <asp:DropDownList runat="server" CssClass="form-control" ID="ddlMasterMenu" AutoPostBack="True" OnSelectedIndexChanged="ddlMasterMenu_OnSelectedIndexChanged" />
@@ -41,7 +41,7 @@
     <br />
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
-            <label for="ddlMenuName" class="col-lg-2 col-md-2 control-label text-right">Menu Name</label>
+            <label for="ddlMenuName" class="col-lg-2 col-md-2 control-label text-right">Select Menu</label>
             <div class="col-lg-4 col-md-6">
                 <asp:DropDownList runat="server" CssClass="form-control" ID="ddlMenuName" AutoPostBack="True" />
             </div>
@@ -90,7 +90,7 @@
 
             <%--<button type="reset" class="btn btn-danger">Cancel</button>--%>
             <asp:Button runat="server" ID="btnCancel" CssClass="btn btn-danger" Text="Cancel" OnClick="btnCancel_OnClick" />
-            <asp:Button runat="server" ID="btnSave" CssClass="btn btn-primary" Text="Save" OnClick="btnSave_OnClick" />
+            <asp:Button runat="server" ID="btnSave" CssClass="btn btn-primary" Text="Save"  OnClick="btnSave_OnClick" />
             <asp:Button runat="server" ID="btnLoad" CssClass="btn btn-primary" Text="LoadAll" OnClick="btnLoad_OnClick" />
            
 
@@ -149,7 +149,7 @@
                             <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("Id") %>' />
                             <div class="btn-group btn-group-sm">
                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm " Text="Edit" ID="btnEdit" OnClick="btnEdit_OnClick" />
-                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClick="btnDelete_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClientClick="return confirm('Are you sure you want to delete this record?');" OnClick="btnDelete_OnClick" />
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>

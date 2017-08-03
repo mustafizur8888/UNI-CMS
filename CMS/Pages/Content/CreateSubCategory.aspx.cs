@@ -206,22 +206,24 @@ namespace CMS.Pages.Content
             {
                 msg += "Please select  category menu" + "<br>";
             }
-            
 
-            //else
-            //{
 
-            //    string query = "Select count(*) from [tbl_MasterMenu] where MenuOrder='" + txtMenuOrder.Text + "'";
-            //    string value = _db.GetSingelValue(query);
-            //    if (!string.IsNullOrEmpty(value))
-            //    {
-            //        if (value != "0")
-            //        {
-            //            msg += "Menu order already exists" + "<br/>";
-            //        }
-            //    }
+            else if (btnSave.Text != "Update")
+            {
 
-            //}
+                string query = "Select count(*) from [tbl_SubCategory] where SubCategoryName='" + txtSubCategory.Text + "' and PortalId="
+
+                    + ddlPortalMenu.SelectedValue+ " and CategoryId="+ddlCategoryName.SelectedValue+"";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Sub-Category name already exists for this portal menu" + "<br/>";
+                    }
+                }
+
+            }
 
             if (!string.IsNullOrWhiteSpace(msg))
             {

@@ -54,6 +54,7 @@ namespace CMS.Pages.Content
 
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
+
             Button btn = (Button)sender;
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
             string idVal = ((HiddenField)gvr.FindControl("hidId")).Value;
@@ -180,20 +181,20 @@ namespace CMS.Pages.Content
                 msg += "Genre name is empty" + "<br>";
             }
 
-            //else
-            //{
+            else if (btnSave.Text != "Update")
+            {
 
-            //    string query = "Select count(*) from [tbl_MasterMenu] where MenuOrder='" + txtMenuOrder.Text + "'";
-            //    string value = _db.GetSingelValue(query);
-            //    if (!string.IsNullOrEmpty(value))
-            //    {
-            //        if (value != "0")
-            //        {
-            //            msg += "Menu order already exists" + "<br/>";
-            //        }
-            //    }
+                string query = "Select count(*) from [tbl_Genre] where Name='" + txtGenreName.Text + "'";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Genre name already exists" + "<br/>";
+                    }
+                }
 
-            //}
+            }
 
             if (!string.IsNullOrWhiteSpace(msg))
             {

@@ -108,7 +108,7 @@
                             <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("Id") %>' />
                             <div class="btn-group btn-group-sm">
                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm " Text="Edit" ID="btnEdit" OnClick="btnEdit_OnClick" />
-                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClick="btnDelete_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClientClick="return confirm('Are you sure you want to delete this record?');" OnClick="btnDelete_OnClick" />
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>

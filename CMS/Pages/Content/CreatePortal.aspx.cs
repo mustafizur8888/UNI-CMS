@@ -179,21 +179,21 @@ namespace CMS.Pages.Content
             {
                 msg += "Portal name is empty" + "<br>";
             }
-           
-            //else
-            //{
 
-            //    string query = "Select count(*) from [tbl_MasterMenu] where MenuOrder='" + txtMenuOrder.Text + "'";
-            //    string value = _db.GetSingelValue(query);
-            //    if (!string.IsNullOrEmpty(value))
-            //    {
-            //        if (value != "0")
-            //        {
-            //            msg += "Menu order already exists" + "<br/>";
-            //        }
-            //    }
+            else if (btnSave.Text != "Update")
+            {
 
-            //}
+                string query = "Select count(*) from [tbl_PortalName] where Name='" + txtPortalName.Text + "'";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Portal name already exists" + "<br/>";
+                    }
+                }
+
+            }
 
             if (!string.IsNullOrWhiteSpace(msg))
             {

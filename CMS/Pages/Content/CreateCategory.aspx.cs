@@ -202,21 +202,21 @@ namespace CMS.Pages.Content
             {
                 msg += "Please select Portal from menu" + "<br>";
             }
-         
-            //else
-            //{
 
-            //    string query = "Select count(*) from [tbl_MasterMenu] where MenuOrder='" + txtMenuOrder.Text + "'";
-            //    string value = _db.GetSingelValue(query);
-            //    if (!string.IsNullOrEmpty(value))
-            //    {
-            //        if (value != "0")
-            //        {
-            //            msg += "Menu order already exists" + "<br/>";
-            //        }
-            //    }
+            else if (btnSave.Text != "Update")
+            {
 
-            //}
+                string query = "Select count(*) from [tbl_CategoryName] where CategoryName='" + txtCategory.Text + "'";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Category name already exists" + "<br/>";
+                    }
+                }
+
+            }
 
             if (!string.IsNullOrWhiteSpace(msg))
             {

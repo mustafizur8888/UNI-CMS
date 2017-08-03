@@ -182,7 +182,20 @@ namespace AMAR.Web.Pages.CMS
 
             if (string.IsNullOrWhiteSpace(txtMasterMenu.Text))
             {
-                msg += "Role name is empty" + "<br>";
+                msg += "Master Menu name is empty" + "<br>";
+            }
+            else if (btnSave.Text != "Update")
+            {
+
+                string query = "Select count(*) from [tbl_MasterMenu] where Name='" + txtMasterMenu.Text + "'";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Master Menu names already exists" + "<br/>";
+                    }
+                }
             }
             if (string.IsNullOrWhiteSpace(txtMenuOrder.Text))
             {

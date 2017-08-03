@@ -213,10 +213,7 @@ namespace AMAR.Web.Pages.CMS
             bool result = true;
             string msg = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(txtMenu.Text))
-            {
-                msg += "Menu name is empty" + "<br>";
-            }
+           
             if (string.IsNullOrWhiteSpace(txtMenuOrder.Text))
             {
                 msg += "Menu order is empty" + "<br>";
@@ -224,6 +221,22 @@ namespace AMAR.Web.Pages.CMS
             if (ddlMasterMenu.Items.Count == 0)
             {
                 msg += "Please select Master menu" + "<br>";
+            }
+            if (string.IsNullOrWhiteSpace(txtMenu.Text))
+            {
+                msg += "Menu name is empty" + "<br>";
+            }
+            else if (btnSave.Text != "Update")
+            {
+                string query = "Select count(*) from [tbl_Menu] where MenuName='" + txtMenu.Text + "' and MasterMenuId="+ddlMasterMenu.SelectedValue+"";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Menu name already exists for this master menu" + "<br/>";
+                    }
+                }
             }
             if (!checkHasSubMenu.Checked)
             {

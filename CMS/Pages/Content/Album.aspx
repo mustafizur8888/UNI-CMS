@@ -28,7 +28,7 @@
     <br />
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
-            <label for="ddlOwnerName" class="col-lg-2 col-md-2 control-label text-right">Owner Name</label>
+            <label for="ddlOwnerName" class="col-lg-2 col-md-2 control-label text-right">Select Owner</label>
             <div class="col-lg-4 col-md-6">
                 <%--<asp:TextBox runat="server" CssClass="form-control" ID="TextBox1"></asp:TextBox>--%>
                 <%--<asp:DropDownList runat="server" CssClass="form-control" ID="ddlPortalMenu" AutoPostBack="True"  OnSelectedIndexChanged="ddlMasterMenu_OnSelectedIndexChanged" />--%>
@@ -41,7 +41,7 @@
     <br />
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
-            <label for="ddlGenre" class="col-lg-2 col-md-2 control-label text-right">Album Type</label>
+            <label for="ddlGenre" class="col-lg-2 col-md-2 control-label text-right"> Select Album</label>
             <div class="col-lg-4 col-md-6">
                 <asp:DropDownList runat="server" CssClass="form-control" ID="ddlGenre" data-placeholder="Choose a Genre" AutoPostBack="True" />
             </div>
@@ -93,14 +93,14 @@
             <asp:GridView ID="grdAlbumInfo" runat="server" CssClass="table table-striped table-hover  table-condensed " AutoGenerateColumns="False" GridLines="None">
                 <Columns>
 
-                    <asp:TemplateField HeaderText="SubMenuName">
+                    <asp:TemplateField HeaderText="Album Name">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblAlbumName" Text='<%# Bind("AlbumName") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Is_Active">
                         <ItemTemplate>
-                            <asp:Label runat="server" ID="lblIsActive" Text='<%# Bind("Is_Active") %>' />
+                            <asp:Label runat="server" ID="lblIsActive" Text='<%# Bind("IsActive") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Created_By">
@@ -132,7 +132,7 @@
                             <asp:HiddenField runat="server" ID="hidGenreId" Value='<%# Bind("GenreId") %>' />
                             <div class="btn-group btn-group-sm">
                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm " Text="Edit" ID="btnEdit" OnClick="btnEdit_OnClick" />
-                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClick="btnDelete_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClientClick="return confirm('Are you sure you want to delete this record?');" OnClick="btnDelete_OnClick" />
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>

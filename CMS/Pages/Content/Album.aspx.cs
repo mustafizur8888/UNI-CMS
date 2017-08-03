@@ -239,6 +239,19 @@ namespace CMS.Pages.Content
             {
                 msg += "Album name is empty" + "<br>";
             }
+            else if (btnSave.Text != "Update")
+            {
+
+                string query = "Select count(*) from [tblAlbum] where AlbumName='" + txtAlbumName.Text + "'";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Album name already exists" + "<br/>";
+                    }
+                }
+            }
 
             if (ddlOwnerName.Items.Count == 0)
             {

@@ -180,20 +180,20 @@ namespace CMS.Pages.Content
                 msg += "Artist name is empty" + "<br>";
             }
 
-            //else
-            //{
+            else if (btnSave.Text != "Update")
+            {
 
-            //    string query = "Select count(*) from [tbl_MasterMenu] where MenuOrder='" + txtMenuOrder.Text + "'";
-            //    string value = _db.GetSingelValue(query);
-            //    if (!string.IsNullOrEmpty(value))
-            //    {
-            //        if (value != "0")
-            //        {
-            //            msg += "Menu order already exists" + "<br/>";
-            //        }
-            //    }
+                string query = "Select count(*) from [tbl_AirtistName] where Name='" + txtArtistName.Text + "'";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Artist name already exists" + "<br/>";
+                    }
+                }
 
-            //}
+            }
 
             if (!string.IsNullOrWhiteSpace(msg))
             {

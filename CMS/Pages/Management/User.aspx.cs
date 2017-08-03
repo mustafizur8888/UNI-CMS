@@ -225,10 +225,10 @@ namespace AMAR.Web.Pages.CMS
             {
                 msg += "User name is empty" + "<br>";
             }
-            else
+            else if(btnSave.Text != "Update")
             {
 
-                string query = "Select count(*) from [tbl_User] where [Name]='" + txtUserName.Text + "'";
+                string query = "Select count(*) from [tbl_User] where [UserName]='" + txtUserName.Text + "'";
                 string value = _db.GetSingelValue(query);
                 if (!string.IsNullOrEmpty(value))
                 {

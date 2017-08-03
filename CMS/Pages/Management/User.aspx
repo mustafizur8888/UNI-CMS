@@ -55,7 +55,7 @@
             <label for="ddlMasterMenu" class="col-lg-2 col-md-2 control-label text-right">Role</label>
             <div class="col-lg-4 col-md-6">
                 <%--<asp:TextBox runat="server" CssClass="form-control" ID="TextBox1"></asp:TextBox>--%>
-                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlRole" AutoPostBack="True" OnSelectedIndexChanged="ddlRole_OnSelectedIndexChanged" />
+                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlRole" AutoPostBack="False" OnSelectedIndexChanged="ddlRole_OnSelectedIndexChanged" />
             </div>
 
         </div>
@@ -193,7 +193,7 @@
                             <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("Id") %>' />
                             <div class="btn-group btn-group-sm">
                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm " Text="Edit" ID="btnEdit" OnClick="btnEdit_OnClick" />
-                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClick="btnDelete_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" OnClientClick="return confirm('Are you sure you want to delete this record?');"  Text="Delete" ID="btnDelete" OnClick="btnDelete_OnClick" />
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>

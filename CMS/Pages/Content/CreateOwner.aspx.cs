@@ -177,23 +177,23 @@ namespace CMS.Pages.Content
 
             if (string.IsNullOrWhiteSpace(txtOwnerName.Text))
             {
-                msg += "Artist name is empty" + "<br>";
+                msg += "Owner name is empty" + "<br>";
             }
 
-            //else
-            //{
+            else if (btnSave.Text != "Update")
+            {
 
-            //    string query = "Select count(*) from [tbl_MasterMenu] where MenuOrder='" + txtMenuOrder.Text + "'";
-            //    string value = _db.GetSingelValue(query);
-            //    if (!string.IsNullOrEmpty(value))
-            //    {
-            //        if (value != "0")
-            //        {
-            //            msg += "Menu order already exists" + "<br/>";
-            //        }
-            //    }
+                string query = "Select count(*) from [tbl_Owner] where Name='" + txtOwnerName.Text + "'";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Owner name already exists" + "<br/>";
+                    }
+                }
 
-            //}
+            }
 
             if (!string.IsNullOrWhiteSpace(msg))
             {

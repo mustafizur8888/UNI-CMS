@@ -60,7 +60,7 @@
             <asp:GridView ID="grdArtistName" runat="server" CssClass="table table-striped table-hover  table-condensed " AutoGenerateColumns="False" GridLines="None">
                 <Columns>
 
-                    <asp:TemplateField HeaderText="RoleName">
+                    <asp:TemplateField HeaderText="Owner Name">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblOwnerName" Text='<%# Bind("Name") %>' />
                         </ItemTemplate>
@@ -95,7 +95,7 @@
                             <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("Id") %>' />
                             <div class="btn-group btn-group-sm">
                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm " Text="Edit" ID="btnEdit" OnClick="btnEdit_OnClick" />
-                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClick="btnDelete_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClientClick="return confirm('Are you sure you want to delete this record?');"  OnClick="btnDelete_OnClick" />
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>

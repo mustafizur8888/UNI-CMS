@@ -28,7 +28,7 @@
     <br />
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
-            <label for="ddlPortalMenu" class="col-lg-2 col-md-2 control-label text-right">Portal Name</label>
+            <label for="ddlPortalMenu" class="col-lg-2 col-md-2 control-label text-right">Select Portal</label>
             <div class="col-lg-4 col-md-6">
                 <%--<asp:TextBox runat="server" CssClass="form-control" ID="TextBox1"></asp:TextBox>--%>
                 <%--<asp:DropDownList runat="server" CssClass="form-control" ID="ddlPortalMenu" AutoPostBack="True"  OnSelectedIndexChanged="ddlMasterMenu_OnSelectedIndexChanged" />--%>
@@ -41,7 +41,7 @@
     <br />
     <div class="row">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
-            <label for="ddlCategoryName" class="col-lg-2 col-md-2 control-label text-right">Category Name</label>
+            <label for="ddlCategoryName" class="col-lg-2 col-md-2 control-label text-right">Select Category</label>
             <div class="col-lg-4 col-md-6">
                 <asp:DropDownList runat="server" CssClass="form-control" ID="ddlCategoryName" AutoPostBack="True" />
             </div>
@@ -119,7 +119,7 @@
                             <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("PortalId") %>' />
                             <div class="btn-group btn-group-sm">
                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm " Text="Edit" ID="btnEdit" OnClick="btnEdit_OnClick" />
-                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClick="btnDelete_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-danger  btn-sm" Text="Delete" ID="btnDelete" OnClientClick="return confirm('Are you sure you want to delete this record?');" OnClick="btnDelete_OnClick" />
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>

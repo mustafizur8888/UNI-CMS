@@ -199,10 +199,7 @@ namespace AMAR.Web.Pages.CMS
             bool result = true;
             string msg = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(txtSubMenu.Text))
-            {
-                msg += "Sub-Menu name is empty" + "<br>";
-            }
+           
             if (string.IsNullOrWhiteSpace(txtSubMenuOrder.Text))
             {
                 msg += "Sub-Menu order is empty" + "<br>";
@@ -219,7 +216,22 @@ namespace AMAR.Web.Pages.CMS
             {
                 msg += "Sub-Menu order is empty" + "<br>";
             }
-
+            if (string.IsNullOrWhiteSpace(txtSubMenu.Text))
+            {
+                msg += "Sub-Menu name is empty" + "<br>";
+            }
+            else if (btnSave.Text != "Update")
+            {
+                string query = "Select count(*) from [tbl_SubMenu] where SubMenuName='" + txtSubMenu.Text + "' and MenuId=" + ddlMenuName.SelectedValue + "";
+                string value = _db.GetSingelValue(query);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value != "0")
+                    {
+                        msg += "Sub-Menu name already exists for this  menu" + "<br/>";
+                    }
+                }
+            }
             //else
             //{
 
