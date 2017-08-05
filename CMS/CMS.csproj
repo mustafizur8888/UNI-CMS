@@ -610,6 +610,7 @@
     <Content Include="Pages\Management\SubMenu.aspx" />
     <Content Include="Pages\Management\User.aspx" />
     <Content Include="Pages\ServiceConfig\ChargingType.aspx" />
+    <Content Include="Pages\ServiceConfig\ServiceConfig.aspx" />
     <Content Include="UniSite.Master" />
     <Content Include="js\helpers\ckeditor\CHANGES.md" />
     <Content Include="js\helpers\ckeditor\LICENSE.md" />
@@ -885,6 +886,13 @@
     </Compile>
     <Compile Include="Pages\ServiceConfig\ChargingType.aspx.designer.cs">
       <DependentUpon>ChargingType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ServiceConfig\ServiceConfig.aspx.cs">
+      <DependentUpon>ServiceConfig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ServiceConfig\ServiceConfig.aspx.designer.cs">
+      <DependentUpon>ServiceConfig.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site2.Master.cs">
