@@ -32,6 +32,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-md-4 control-label" for="txtDayDuration">Day Duration</label>
+                    <div class="col-md-5">
+                        <asp:TextBox runat="server" ID="txtDayDuration" CssClass="form-control" placeholder="Day Duration"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-md-4 control-label" for="chkActive">Active</label>
                     <div class="col-md-5">
                         <div class="checkbox">
@@ -46,6 +52,43 @@
                     <asp:Button runat="server" CssClass="btn btn-sm btn-warning" ID="btnCanel" Text="Cancel" OnClick="btnCanel_OnClick" />
                 </div>
             </div>
+
+            <asp:GridView ID="grdServiceType" CssClass="table table-striped table-vcenter table-hover table-responsive" runat="server" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:TemplateField HeaderText="Type">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblType" Text='<%# Bind("Type") %>'></asp:Label>
+                            <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("Id") %>'></asp:HiddenField>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Day Duration">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblDayDuration" Text='<%# Bind("DayDuration") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField> 
+                    <asp:TemplateField HeaderText="Active">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblIsActive" Text='<%# Bind("IsActive") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Action">
+                        <ItemTemplate>
+                            <div class="btn-group btn-group-xs">
+                                <asp:LinkButton runat="server" CssClass="btn btn-danger btn-xs" ID="grdDelete" OnClick="grdDelete_OnClick">
+                                    <i class="fa fa-times"></i>
+                                </asp:LinkButton>
+                                <asp:LinkButton runat="server" CssClass="btn btn-default btn-xs" ID="grdEdit" OnClick="grdEdit_OnClick" 
+                                                >
+                                    <i class="fa fa-pencil"></i>
+                                </asp:LinkButton>
+                            </div>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+            <asp:HiddenField runat="server" ID="hidId"/>
         </div>
     </div>
+   
+
 </asp:Content>

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web.UI.WebControls;
 using CMS.Models;
 using DAL;
 
@@ -15,8 +18,7 @@ namespace CMS.Pages.ServiceConfig
             divSucc.Visible = false;
             if (!IsPostBack)
             {
-
-
+                ShowGrd();
             }
         }
 
@@ -41,7 +43,19 @@ namespace CMS.Pages.ServiceConfig
             {
                 msg += "Charging type is empty" + "<br>";
             }
-            if (string.IsNullOrWhiteSpace(msg))
+            if (string.IsNullOrWhiteSpace(txtDayDuration.Text))
+            {
+                msg += "Day Duration is empty" + "<br>";
+            }
+            if (!string.IsNullOrWhiteSpace(txtDayDuration.Text))
+            {
+                if (!txtDayDuration.Text.All(Char.IsDigit))
+                {
+                    msg += "Day Duration is not valid number" + "<br>";
+                }
+
+            }
+            if (!string.IsNullOrWhiteSpace(msg))
             {
                 result = false;
                 ShowError(msg);
@@ -54,27 +68,21 @@ namespace CMS.Pages.ServiceConfig
         {
             if (Validation())
             {
-                SqlParameter Id = new SqlParameter
+                SqlParameter id = new SqlParameter
                 {
-                    Value = "",
+                    Value = string.IsNullOrWhiteSpace(hidId.Value) ? "0" : hidId.Value,
                     ParameterName = "@Id"
                 };
-                SqlParameter Type = new SqlParameter
+                SqlParameter action = new SqlParameter
                 {
-                    Value = txtCType.Text,
-                    ParameterName = "@Type"
-                };
-                SqlParameter Action = new SqlParameter
-                {
-                    Value = "",
+                    Value = string.IsNullOrWhiteSpace(hidId.Value) ? "Insert" : "Update",
                     ParameterName = "@Action"
                 };
 
                 List<SqlParameter> list = new List<SqlParameter>
                 {
-                    Id,
-                    Type,
-                    Action,
+                    id,
+                    action,
                     new SqlParameter
                     {
                         ParameterName = "@IsActive",
@@ -89,11 +97,38 @@ namespace CMS.Pages.ServiceConfig
                     {
                         ParameterName = "@Updated_By",
                         Value = UserModel.UserId
+                    },
+                    new SqlParameter
+                    {
+                        ParameterName = "@DayDuration",
+                        Value = txtDayDuration.Text
+                    },new  SqlParameter
+                    {
+                        Value = txtCType.Text,
+                        ParameterName = "@Type"
                     }
-                };
+            };
+                int c = _db.ExecuteNonQuery("SpChargingType", list);
+                if (c > 0)
+                {
+                    ShowSucc(string.IsNullOrWhiteSpace(hidId.Value) ? "Saved Successfully" : "Update Successfully");
 
-                _db.ExecuteNonQuery("SpChargingType", list);
+                    ShowGrd();
+                    Initialization();
+                }
+                else
+                {
+                    ShowError(string.IsNullOrWhiteSpace(hidId.Value) ? "Faield to saved" : "Faield to update");
+                }
             }
+        }
+
+        private void ShowGrd()
+        {
+            DataSet ds = _db.GetDataSet("SpGetChargingType");
+
+            grdServiceType.DataSource = ds;
+            grdServiceType.DataBind();
         }
 
         protected void btnCanel_OnClick(object sender, EventArgs e)
@@ -105,6 +140,46 @@ namespace CMS.Pages.ServiceConfig
         {
             txtCType.Text = string.Empty;
             chkActive.Checked = false;
+            txtDayDuration.Text = String.Empty;
+            hidId.Value = String.Empty;
+        }
+
+        protected void grdDelete_OnClick(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow gvr = (GridViewRow)btn.NamingContainer;
+            string id = ((HiddenField)gvr.FindControl("hidId")).Value;
+            List<SqlParameter> sqlParameters = new List<SqlParameter>
+            {
+                new SqlParameter{Value = id,ParameterName = "@Id"},
+                new SqlParameter{Value = "Delete",ParameterName = "@Action"}
+            };
+            int executeNonQuery = _db.ExecuteNonQuery("SpChargingType", sqlParameters);
+            if (executeNonQuery > 0)
+            {
+                ShowSucc("Successfully Deleted");
+                ShowGrd();
+            }
+            else
+            {
+                ShowError("Failed To Delete");
+            }
+        }
+
+        protected void grdEdit_OnClick(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow gvr = (GridViewRow)btn.NamingContainer;
+            string id = ((HiddenField)gvr.FindControl("hidId")).Value;
+            string type = ((Label)gvr.FindControl("lblType")).Text;
+            string dayDuration = ((Label)gvr.FindControl("lblDayDuration")).Text;
+            string active = ((Label)gvr.FindControl("lblIsActive")).Text;
+
+            txtDayDuration.Text = dayDuration;
+            txtCType.Text = type;
+            chkActive.Checked = active == "True";
+            hidId.Value = id;
+
         }
     }
 }

@@ -58,6 +58,15 @@ namespace CMS.Pages.ServiceConfig {
         protected global::System.Web.UI.WebControls.TextBox txtCType;
         
         /// <summary>
+        /// txtDayDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDayDuration;
+        
+        /// <summary>
         /// chkActive control.
         /// </summary>
         /// <remarks>
@@ -83,5 +92,23 @@ namespace CMS.Pages.ServiceConfig {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCanel;
+        
+        /// <summary>
+        /// grdServiceType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdServiceType;
+        
+        /// <summary>
+        /// hidId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidId;
     }
 }
