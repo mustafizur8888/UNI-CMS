@@ -20,8 +20,9 @@ namespace CMS.Pages.Content
             divSucc.Visible = false;
             if (!IsPostBack)
             {
-                PortalMenuLoad();
-                ddlMasterMenu_OnSelectedIndexChanged(null, null);
+                LoadCategory();
+               // PortalMenuLoad();
+                //ddlMasterMenu_OnSelectedIndexChanged(null, null);
             }
         }
 
@@ -59,13 +60,13 @@ namespace CMS.Pages.Content
             string SubMenuName = ((Label)gvr.FindControl("lblSubCategoryName")).Text;
             string Status = ((Label)gvr.FindControl("lblIsActive")).Text;
             string MasterId = ((HiddenField)gvr.FindControl("hiMasterId")).Value;
-            string PrimaryId = ((HiddenField)gvr.FindControl("hidId")).Value;
+           // string PrimaryId = ((HiddenField)gvr.FindControl("hidId")).Value;
             hidMenuId.Value = MasterId;
-            hidIdPrimary.Value = PrimaryId;
+           // hidIdPrimary.Value = PrimaryId;
             checkIsActive.Checked = Status == "True";
             txtSubCategory.Text = SubMenuName;
             ddlCategoryName.SelectedValue = MasterId;
-            ddlPortalMenu.SelectedValue = PrimaryId;
+          //  ddlPortalMenu.SelectedValue = PrimaryId;
             btnSave.Text = "Update";
         }
 
@@ -119,7 +120,6 @@ namespace CMS.Pages.Content
 
 
                 string SubCategoryName = txtSubCategory.Text;
-                int PortalId = Convert.ToInt32(ddlPortalMenu.SelectedValue);
                 int CatId = Convert.ToInt32(ddlCategoryName.SelectedValue);
                 string CreatedBy = String.Empty;
                 try
@@ -144,7 +144,7 @@ namespace CMS.Pages.Content
                 {
                     new SqlParameter{Value = type,ParameterName = "@type"},
                     new SqlParameter{Value = SubCategoryName,ParameterName = "@SubCategoryName"},
-                    new SqlParameter{Value = PortalId,ParameterName = "@PortalId"},
+                
                     new SqlParameter{Value = CatId,ParameterName = "@CategoryId"},
                     new SqlParameter{Value = CreatedBy,ParameterName = "@CreatedBy"},
                     new SqlParameter{Value = UpdatedBy,ParameterName = "@UpdatedBy"},
@@ -172,7 +172,6 @@ namespace CMS.Pages.Content
             List<SqlParameter> sqlParameters = new List<SqlParameter>
             {
                 new SqlParameter{Value = "select",ParameterName = "@type"},
-                new SqlParameter{Value = ddlPortalMenu.SelectedValue,ParameterName = "@PortalId"},
                 new SqlParameter{Value = ddlCategoryName.SelectedValue,ParameterName = "@CategoryId"},
 
             };
@@ -198,10 +197,7 @@ namespace CMS.Pages.Content
                 msg += "Sub-Category name is empty" + "<br>";
             }
            
-            if (ddlPortalMenu.Items.Count == 0)
-            {
-                msg += "Please select Portal menu" + "<br>";
-            }
+           
             if (ddlCategoryName.Items.Count == 0)
             {
                 msg += "Please select  category menu" + "<br>";
@@ -211,9 +207,7 @@ namespace CMS.Pages.Content
             else if (btnSave.Text != "Update")
             {
 
-                string query = "Select count(*) from [tbl_SubCategory] where SubCategoryName='" + txtSubCategory.Text + "' and PortalId="
-
-                    + ddlPortalMenu.SelectedValue+ " and CategoryId="+ddlCategoryName.SelectedValue+"";
+                string query = "Select count(*) from [tbl_SubCategory] where SubCategoryName='" + txtSubCategory.Text + "' and CategoryId="+ddlCategoryName.SelectedValue+"";
                 string value = _db.GetSingelValue(query);
                 if (!string.IsNullOrEmpty(value))
                 {
@@ -261,11 +255,7 @@ namespace CMS.Pages.Content
                     Value = "catName",
                     ParameterName = "@type"
                 },
-                new SqlParameter
-                {
-                    Value = ddlPortalMenu.SelectedValue,
-                    ParameterName = "@masterId"
-                },
+            
 
             };
             DataSet dsMenuDataSet = _db.GetDataSet("sp_GetMenuNames", sqlParameters);
@@ -280,6 +270,11 @@ namespace CMS.Pages.Content
             {
                 ddlCategoryName.Items.Clear();
             }
+            LoadSubCategory();
+        }
+
+        protected void ddlCategoryName_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
             LoadSubCategory();
         }
     }

@@ -20,7 +20,7 @@ namespace CMS.Pages.Content
             divSucc.Visible = false;
             if (!IsPostBack)
             {
-                PortalMenuLoad();
+                //PortalMenuLoad();
             }
         }
 
@@ -58,15 +58,15 @@ namespace CMS.Pages.Content
             string CategoryName = ((Label)gvr.FindControl("lblCategoryName")).Text;
             string Status = ((Label)gvr.FindControl("lblIsActive")).Text;
             string HasSubeMenu = ((Label)gvr.FindControl("lblHasSubManu")).Text;
-            string MasterId = ((HiddenField)gvr.FindControl("hiMasterId")).Value;
+            //string MasterId = ((HiddenField)gvr.FindControl("hiMasterId")).Value;
             string PrimaryId = ((HiddenField)gvr.FindControl("hidId")).Value;
-            hidMasterMenuId.Value = MasterId;
+            //hidMasterMenuId.Value = MasterId;
             hidIdPrimary.Value = PrimaryId;
             checkIsActive.Checked = Status == "True";
             checkHasSubMenu.Checked = HasSubeMenu == "True";
             //txtMasterMenu.Text = MasterMenu;
             txtCategory.Text = CategoryName;
-            ddlPortalMenu.SelectedValue = MasterId;
+            //ddlPortalMenu.SelectedValue = MasterId;
             btnSave.Text = "Update";
         }
 
@@ -121,7 +121,7 @@ namespace CMS.Pages.Content
 
 
                 string CategoryName = txtCategory.Text;
-                int MasterMenuId = Convert.ToInt32(ddlPortalMenu.SelectedValue);
+         
                 string CreatedBy = String.Empty;
                 try
                 {
@@ -136,17 +136,19 @@ namespace CMS.Pages.Content
                 DateTime CreateDate = DateTime.Now;
                 bool isActive = checkIsActive.Checked;
                 bool HasSubMenu = checkHasSubMenu.Checked;
-                string type = hidMasterMenuId.Value;
+                //string type = hidMasterMenuId.Value;
+                string type = String.Empty;
                 string idVal = hidIdPrimary.Value;
                 int id = 0;
                 id = idVal != "" ? Convert.ToInt32(idVal) : 0;
+                type = id == 0 ? String.Empty : "update";
                 bool status = checkIsActive.Checked;
                 type = type == "" ? "insert" : "update";
                 List<SqlParameter> sqlParameters = new List<SqlParameter>
                 {
                     new SqlParameter{Value = type,ParameterName = "@type"},
                     new SqlParameter{Value = CategoryName,ParameterName = "@CategoryName"},
-                    new SqlParameter{Value = ddlPortalMenu.SelectedValue,ParameterName = "@PortalId"},
+                   
                     new SqlParameter{Value = CreatedBy,ParameterName = "@CreatedBy"},
                     new SqlParameter{Value = UpdatedBy,ParameterName = "@UpdatedBy"},
                     new SqlParameter{Value =CreateDate,ParameterName = "@CreateDate"},
@@ -198,11 +200,7 @@ namespace CMS.Pages.Content
                 msg += "Category name is empty" + "<br>";
             }
             
-            if (ddlPortalMenu.Items.Count == 0)
-            {
-                msg += "Please select Portal from menu" + "<br>";
-            }
-
+          
             else if (btnSave.Text != "Update")
             {
 

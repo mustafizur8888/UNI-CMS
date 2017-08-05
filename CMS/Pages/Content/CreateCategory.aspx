@@ -27,7 +27,7 @@
 
     </div>
     <br />
-    <div class="row">
+    <div class="row" runat="server" Visible="False">
         <div class="form-group col-lg-offset-1 col-md-offset-1">
             <label for="ddlPortalMenu" class="col-lg-2 col-md-2 control-label text-right">Select Portal</label>
             <div class="col-lg-4 col-md-6">
@@ -119,7 +119,7 @@
                    
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
-                            <asp:HiddenField runat="server" ID="hiMasterId" Value='<%# Bind("PortalId") %>' />
+                            <%--<asp:HiddenField runat="server" ID="hiMasterId" Value='<%# Bind("PortalId") %>' />--%>
                             <asp:HiddenField runat="server" ID="hidId" Value='<%# Bind("Id") %>' />
                             <div class="btn-group btn-group-sm">
                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm " Text="Edit" ID="btnEdit" OnClick="btnEdit_OnClick" />
