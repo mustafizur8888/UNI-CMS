@@ -175,6 +175,7 @@
                             <!-- END User Info -->
 
                             <ul class="sidebar-nav" id="menu">
+                                <asp:Literal ID="dd" runat="server"></asp:Literal>
                             </ul>
                             <!-- END Sidebar Navigation -->
 
